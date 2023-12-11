@@ -1,0 +1,286 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.recipes-header {
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+}
+
+.page-header {
+    color: #ffffff;
+    font-weight: 700;
+    border-left: 10px solid #7e3cff;
+}
+
+.searchbar {
+    width: 35%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+#id_searchbar {
+    width: 98%;
+    height: 6vh;
+    padding: 1vw;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 6vh;
+}
+
+.searchbar-icon {
+    right: 0;
+    width: 4vw;
+    height: 6vh;
+    display: flex;
+    color: #ffffff;
+    position: absolute;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+    border-top-right-radius: 6vh;
+    border-bottom-right-radius: 6vh;
+    background-color: #7e3cff;
+    transition: all 0.3s ease;
+}
+
+.searchbar-icon:hover {
+    background-color: #6b21ff;
+}
+
+#grid-container {
+    height: 100%;
+}
+
+.dish-row {
+    height: 50vh;
+    white-space: nowrap;
+    overflow-x: auto;
+    background-color: #0000000c;
+}
+
+.dish-column {
+    height: 100%;
+    display: inline-block;
+}
+
+.dish-card {
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.dish-overlay {
+    height: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    transition: all 0.3s ease;
+    background-color: #7d3cff49;
+}
+
+.dish-card:hover .dish-overlay {
+    height: 100%;
+}
+
+.dish-image {
+    width: 100%;
+    height: 55%;
+}
+
+.dish-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dish-info {
+    height: 45%;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.dish-title {
+    font-weight: 700;
+}
+
+.dish-prep, .prep-icon{
+    color: #7e3cff;
+    font-weight: 700;
+}
+
+.dish-servings{
+    font-weight: 600;;
+}
+
+.dish-link {
+    top: 55%;
+    left: 50%;
+    opacity: 0;
+    z-index: 10;
+    visibility: hidden;
+    font-weight: 700;
+    background-color: #000000;
+    text-decoration: none;
+    border-radius: 5vh;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.dish-card:hover .dish-link {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dish-link:hover{
+    color: #ffffff;
+    background-color: #7e3cff;
+}
+
+.dish-link:active{
+    background-color: #7e3cff;
+}
+
+.newDish-toggle {
+    right: 0;
+    border: none;
+    margin-right: 8vw;
+    background: none;
+    font-size: 1.5em;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.newDish-toggle:hover {
+    transform: rotate(90deg);
+}
+
+#newDishForm {
+    width: 100%;
+}
+
+#newDishForm label{
+    display: block;
+    font-weight: 700;
+}
+
+#newDishForm input{
+    width: 100%;
+    height: 6vh;
+    border: none;
+    outline: none;
+    padding: 1vw;
+    font-weight: 700;
+    color: #7e3cff;
+    border-radius: 1vh;;
+    background-color: #0000001a;
+}
+
+#newDishForm textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 1vw;
+    font-weight: 700;
+    color: #7e3cff;
+    background-color: #0000001a;
+}
+
+#submit {
+    width: 100%;
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+#submit:hover {
+    background-color: #7e3cff;
+}
+
+#durationField {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cat-label {
+    font-size: 1.5em;
+}
+
+#id_categories {
+    width: 100%;
+    height: 40vh;
+    white-space: nowrap;
+    background-color: #0000001a; /* Prevents wrapping to the next line */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+#id_categories div{
+    display: inline-block
+}
+
+.category-label {
+    font-weight: 700;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .newDish-toggle {
+        margin-right: 12vw;
+    }
+
+    #newDishForm label{
+        font-size: 1.5em;
+    }
+
+    #newDishForm input{
+        font-size: 1.5em;
+    }
+
+    #submit:active {
+        background-color: #7e3cff;
+    }
+
+    .recipes-header {
+        height: 15vh;
+    }
+
+    .searchbar {
+        width: 40%;
+    }
+    
+    #id_searchbar {
+        width: 100%;
+        height: 4vh;
+        border-radius: 4vh;
+    }
+    
+    .searchbar-icon {
+        width: 6vw;
+        height: 4vh;
+    }
+
+    .dish-row {
+        height: 30vh;
+    }
+
+    #newDish {
+        width: 60%;
+    }
+}

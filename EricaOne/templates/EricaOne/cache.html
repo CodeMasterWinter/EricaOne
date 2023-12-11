@@ -1,0 +1,60 @@
+{% csrf_token %}             
+                <label for="id_name">Dish Name:</label>
+                <input type="text" name="name" maxlength="255" required="" id="id_name" class="mb-3">
+                <div id="durationField">
+                    <div class="durationFieldblock me-1">
+                        <label for="id_prep_hours">Hours:</label>
+                        <input type="number" name="prep_hours" required="" id="id_prep_hours">
+                    </div>
+                    <div class="durationFieldblock ms-1">
+                        <label for="id_prep_minutes">Minutes:</label>
+                        <input type="number" name="prep_minutes" required="" id="id_prep_minutes" class="mb-3">
+                    </div>
+                </div>
+          
+                <label for="id_servings">Servings:</label>
+                <input type="number" name="servings" required="" id="id_servings" class="mb-3">
+          
+                <label for="id_aliases">Aliases:</label>
+                <textarea name="aliases" cols="40" rows="5" id="id_aliases" class="mb-3">null</textarea>
+                
+                <div id="id_categories">
+                    <div>
+                        <label for="id_categories_0">
+                            <input type="checkbox" name="categories" value="1" id="id_categories_0">
+                            Savoury
+                        </label>
+                    </div>
+                    <div>
+                        <label for="id_categories_1">
+                            <input type="checkbox" name="categories" value="2" id="id_categories_1">
+                            Sweet
+                        </label>
+                    </div>
+                    <div>
+                        <label for="id_categories_2">
+                            <input type="checkbox" name="categories" value="3" id="id_categories_2">
+                            Baked
+                        </label>
+                    </div>
+                    <div>
+                        <label for="id_categories_3">
+                            <input type="checkbox" name="categories" value="4" id="id_categories_3">
+                            Deep-Fried
+                        </label>
+                    </div>
+                    <div>
+                        <label for="id_categories_4">
+                            <input type="checkbox" name="categories" value="5" id="id_categories_4">
+                            Fried
+                        </label>
+                    </div>
+                    <div>
+                        <label for="id_categories_5">
+                            <input type="checkbox" name="categories" value="6" id="id_categories_5">
+                            Sauteed
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" id="submit" class="btn btn-lg">Add Dish</button>
