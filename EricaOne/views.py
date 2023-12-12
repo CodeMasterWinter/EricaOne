@@ -17,17 +17,22 @@ def recipes(request):
 
     all_categories = Category.objects.all()
     categories = sample(list(all_categories), 4)
-
-    dishes = []
     all_dishes = Dish.objects.all()
+    dishes = []
+
+
     for category in categories:
         dishcount = 0
         for dish in all_dishes:
-            if category in dish.get_categories:
-                dishes.append(dish)
-                dishcount += 1
-                if dishcount == 4:
-                    break
+            if dish not in dishes:
+                if category in dish.get_categories:
+                    print(dish, category)
+                    dishes.append(dish)
+                    dishcount += 1
+                    if dishcount == 4:
+                        break
+        if len(dishes) == 16:
+            break
 
     if request.method == "POST":
         dishForm = NewDish(request.POST)

@@ -2,6 +2,17 @@
     font-family: 'Montserrat', 'Poppins', 'Didact Gothic';
 }
 
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 .logo-nav {
     height: 13vh;
     border-bottom: 1px solid #0000001f;
@@ -13,6 +24,7 @@
 
 .nav-logo {
     height: 100%;
+    animation: fadeIn 2s ease-out;
 }
 
 .nav-logo-img {
