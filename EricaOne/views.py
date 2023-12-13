@@ -24,13 +24,12 @@ def recipes(request):
     for category in categories:
         dishcount = 0
         for dish in all_dishes:
-            if dish not in dishes:
-                if category in dish.get_categories:
-                    print(dish, category)
-                    dishes.append(dish)
-                    dishcount += 1
-                    if dishcount == 4:
-                        break
+            if category in dish.get_categories:
+                print(dish, category)
+                dishes.append(dish)
+                dishcount += 1
+                if dishcount == 4:
+                    break
         if len(dishes) == 16:
             break
 
