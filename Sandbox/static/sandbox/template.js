@@ -1,7 +1,20 @@
-var navItems = document.getElementsByClassName('nav-item')
+const left = document.getElementById('left')
+const right = document.getElementById('right')
+const boxes = document.getElementsByClassName('nav-item')
+var boxwidth = 18;
 
-for (const navItem of navItems) {
-    var navwidth =  92/5;
-    navItem.style.transform = `translateX(${navwidth}vw);`
-    console.log("ight done");
-}
+right.addEventListener('click', () => {
+    for (i=0; i < boxes.length; i++) {
+        boxes[i].style.transform = `translateX(${boxwidth}vw)`;
+        console.log("functional");
+    }
+    boxwidth += 18;
+});
+
+left.addEventListener('click', () => {
+    for (i=0; i < boxes.length; i++) {
+        boxes[i].style.transform = `translateX(${boxwidth}vw)`;
+        console.log("functional");
+    }
+    boxwidth -= 18;
+});
