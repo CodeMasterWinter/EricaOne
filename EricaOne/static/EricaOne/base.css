@@ -2,6 +2,13 @@
     font-family: 'Montserrat', 'Poppins', 'Didact Gothic';
 }
 
+body {
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode {
+    background-color: #181818;
+}
 
 @keyframes fadeIn {
     from {
@@ -11,6 +18,44 @@
     to {
         opacity: 1;
     }
+}
+
+.dark-light-container {
+    left: 5vw;
+    display: flex;
+    place-items: center;
+    position: absolute;
+}
+
+#dark-light {
+    width: 4vw;
+    height: 4vh;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    border-radius: 3vh;
+    position: relative;
+    box-shadow: inset rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.4s;
+}
+
+#dark-light::before {
+    top: 0;
+    left: 0;
+    width: 4vh;
+    height: 4vh;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    transform: scale(0.9);
+    transition: 0.4s;
+    background: linear-gradient(to bottom, #ffffff, #dfdede);
+}
+
+#dark-light:checked::before {
+    left: calc(100% - 4vh);
+    background: none;
+    background-color: #7e3cff;
 }
 
 .logo-nav {
@@ -55,6 +100,10 @@
     color: #7e3cff;
 }
 
+#dark-light:checked .noti-toggle {
+    color: #ffffff;
+}
+
 .navbar-nav{
     width: 100%;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 8px 8px -6px;
@@ -93,6 +142,10 @@
     color: #131313;
     font-weight: 600;
     font-family: 'Poppins';
+}
+
+#dark-light:checked .nav-link{
+    color: #ffffff;
 }
 
 .sidebar-close {
