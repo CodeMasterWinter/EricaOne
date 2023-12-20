@@ -12,17 +12,13 @@ nav {
 }
 
 #main-nav {
-    width: 92vw;
+    width: 100%;
     overflow-x: hidden;
 }
 
 .navbar-nav{
     width: 100%;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 8px 8px -6px;
-}
-
-.navbar-toggler {
-    border: none;
 }
 
 .nav-item{

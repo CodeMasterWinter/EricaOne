@@ -33,6 +33,15 @@
     object-fit: contain;
 }
 
+.nav-button {
+    width: 4vw;
+}
+
+#main-nav {
+    width: 92vw;
+    overflow-x: hidden;
+}
+
 .nav-icon {
     color: #000000;
 }
