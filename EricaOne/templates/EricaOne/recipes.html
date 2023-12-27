@@ -13,13 +13,14 @@
         <h2 class="page-header display-4 mx-3 ps-3">
             Your Recipes
         </h2>
-        <div class="searchbar mx-5">
+        <form action="{% url 'search_recipes' %}" method="POST" class="searchbar" id="searchbar-form">
+            {% csrf_token %}
             <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
-            <a class="searchbar-icon" href="http://"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </div>
+            <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     </div>
     {% for category in categories %}
-        <div class="container-xxl dish-row-container">
+        <div class="container-fluid dish-row-container">
             <h4 class="category-label mx-3 my-2">{{category}}</h4>
             <div class="dish-row p-1 mb-5">
                 {% for dish in dishes %}

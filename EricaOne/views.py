@@ -57,6 +57,26 @@ def recipes(request):
     return render(request, 'EricaOne/recipes.html', context)
 
 
+def search_recipes(request):
+
+    if request.method == "POST":
+        searchbar = request.POST["searchbar"]
+        results = Dish.objects.filter(name__contains=searchbar)
+
+        context = {
+            'searchbar': searchbar,
+            'results': results,
+        }
+
+        return render(request, 'EricaOne/search_recipe.html', context)
+    else:
+        context = {
+
+        }
+
+        return render(request, 'EricaOne/search_recipe.html', context)
+
+
 def recipe(request, recipe_id):
 
     recipe = Dish.objects.get(id=recipe_id)
