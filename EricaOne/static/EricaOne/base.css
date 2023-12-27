@@ -35,27 +35,32 @@ body {
     appearance: none;
     border-radius: 3vh;
     position: relative;
-    box-shadow: inset rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1px;
+    border: 2px solid #000000;
     transition: 0.4s;
+}
+
+#dark-light:checked {
+    border-color: #ffffff;
 }
 
 #dark-light::before {
     top: 0;
     left: 0;
-    width: 4vh;
-    height: 4vh;
+    width: calc(4vh - 4px);
+    height: calc(4vh - 4px);
     content: "";
     border-radius: 50%;
     position: absolute;
-    transform: scale(0.9);
+    transform: scale(0.8);
     transition: 0.4s;
-    background: linear-gradient(to bottom, #ffffff, #dfdede);
+    background: #000000;
 }
 
 #dark-light:checked::before {
-    left: calc(100% - 4vh);
+    left: calc(100% - 4vh + 4px);
     background: none;
-    background-color: #7e3cff;
+    background-color: #ffffff;
 }
 
 .logo-nav {
