@@ -25,7 +25,6 @@ def recipes(request):
         dishcount = 0
         for dish in all_dishes:
             if category in dish.get_categories:
-                print(dish, category)
                 dishes.append(dish)
                 dishcount += 1
                 if dishcount == 4:
