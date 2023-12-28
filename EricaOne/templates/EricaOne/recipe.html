@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="page-header display-2 p-4">
-        {{recipe}}
-    </h2>
+    <header class="mt-5">
+        {% if recipe.image %}
+            <img src="{{recipe.image.url}}" alt="{{recipe}} as page header" class="header-img img-fluid">
+        {% endif %}
+        <h2 class="display-2 header-title mx-4">{{recipe}}</h2>
+        <div class="header-backdrop"></div>
+    </header>
 {% endblock %}

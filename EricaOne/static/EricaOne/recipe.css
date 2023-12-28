@@ -2,6 +2,37 @@
     font-family: 'Montserrat';
 }
 
-.page-header {
+.container-fluid {
+    padding: 0;
+}
+
+header {
+    height: 50vh;
+    position: relative;
+}
+
+.header-backdrop {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: linear-gradient(to top, #7d3cff83, #00000000);
+}
+
+.header-img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+
+.header-title {
+    z-index: 10;
+    bottom: 45%;
+    color: #ffffff;
     font-weight: 700;
+    position: absolute;
 }
