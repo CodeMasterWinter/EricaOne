@@ -20,37 +20,39 @@
             <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </div>
-    <div class="container-fluid search-container">
-        {% for dish in results %}
-            <div class="search-column col-4 col-lg-3 px-1">
-                <div class="card dish-card">
-                    <div class="dish-image">
-                        {% if dish.image %}
-                            <img src="{{dish.image.url}}" class="dish-img">
-                        {% else %}
-                            <img src="{% static 'EricaOne/images/brand/no-image.png' %}" class="dish-img">    
-                        {% endif %}
+    <div class="container-fluid search-dish-container p-0 m-0">
+        <div class="row search-row">
+            {% for dish in results %}
+                <div class="dish-column col-4 col-lg-3 mb-4">
+                    <div class="card dish-card">
+                        <div class="dish-image">
+                            {% if dish.image %}
+                                <img src="{{dish.image.url}}" class="dish-img">
+                            {% else %}
+                                <img src="{% static 'EricaOne/images/brand/no-image.png' %}" class="dish-img">    
+                            {% endif %}
+                        </div>
+                        <div class="dish-info p-3">
+                            <h4 class="dish-title mb-3">{{dish.name}}</h4>
+                            <p class="dish-prep m-0">
+                                <i class="fa-solid fa-clock prep-icon pe-1"></i>
+                                {% if dish.prep_hours != 0 %}
+                                    {{dish.prep_hours}}hr 
+                                {%endif%} 
+                                {{dish.prep_minutes}} min
+                            </p>
+                            <p class="dish-servings m-0">
+                                <i class="fa-solid fa-utensils pe-1"></i>
+                                {{dish.servings}} servings
+                            </p>
+                        </div>
+                        <div class="dish-overlay">
+                        </div>
+                        <a href="{% url 'recipe' dish.id %}" class="dish-link px-5 py-3">See dish</a>
                     </div>
-                    <div class="dish-info p-3">
-                        <h4 class="dish-title mb-3">{{dish.name}}</h4>
-                        <p class="dish-prep m-0">
-                            <i class="fa-solid fa-clock prep-icon pe-1"></i>
-                            {% if dish.prep_hours != 0 %}
-                                {{dish.prep_hours}}hr 
-                            {%endif%} 
-                            {{dish.prep_minutes}} min
-                        </p>
-                        <p class="dish-servings m-0">
-                            <i class="fa-solid fa-utensils pe-1"></i>
-                            {{dish.servings}} servings
-                        </p>
-                    </div>
-                    <div class="dish-overlay">
-                    </div>
-                    <a href="" class="dish-link px-5 py-3">See dish</a>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 <script>
