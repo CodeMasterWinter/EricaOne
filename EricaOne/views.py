@@ -1,13 +1,21 @@
-from .models import Dish, Category
-from .forms import NewDish
 from random import sample
+from .forms import NewDish
+from .models import Dish, Category
+from EricaOne.Scripts.Ericadatetime import DateTime
 from django.shortcuts import render, redirect, reverse
 
 
 def index(request):
 
-    context = {
+    if int(DateTime().hour()) > 16:
+        meal_time = "Dinner"
+    elif int(DateTime().hour()) > 10:
+        meal_time = "Lunch"
+    else:
+        meal_time = "Breakfast"
 
+    context = {
+        'meal_time': meal_time,
     }
 
     return render(request, 'EricaOne/index.html', context)

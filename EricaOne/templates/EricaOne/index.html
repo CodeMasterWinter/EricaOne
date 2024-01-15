@@ -1,1 +1,15 @@
 {% extends 'EricaOne/base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'EricaOne/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2 class="page-header display-4 mx-3 my-5 ps-3">
+        Welcome back, Winter!
+    </h2>
+    <h5 class="meal-suggestion mx-3">
+        {{meal_time}} Suggestions:
+    </h5>
+{% endblock %}
