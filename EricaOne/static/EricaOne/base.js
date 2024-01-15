@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const left = document.getElementById('nav-prev')
     const right = document.getElementById('nav-next')
     const boxes = document.getElementsByClassName('nav-item')
-    var boxwidth = 18;
+    var boxwidth = 18.4;
     var boxpos = 0;
 
     right.addEventListener('click', () => {

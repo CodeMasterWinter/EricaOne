@@ -40,29 +40,33 @@
             {% block addDish %}{% endblock %}
         </div>
     </nav>
-    <nav class="navbar navbar-expand-md p-0">
-        <div class="container-fluid logo-nav-container p-0">
-            <button class="nav-button" id="nav-prev">prev</button>
+    <nav class="scroll-nav navbar navbar-expand-md p-0">
+        <div class="container-fluid scroll-nav-container p-0">
             <div id="main-nav" class="align-items-center">
-                <ul class="navbar-nav justify-content-evenly">
-                    <li class="nav-item text-center">
-                        <a href="#" class="nav-link">Checklists</a>
+                <ul class="navbar-nav justify-content-evenly align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-center">Reminders</a>
                     </li>
-                    <li class="nav-item text-center">
-                        <a href="#" class="nav-link">Tasks</a>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-center">Checklists</a>
                     </li>
-                    <li class="nav-item text-center">
-                        <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-center">Tasks</a>
                     </li>
-                    <li id="recipes-nav-item" class="nav-item text-center">
-                        <a id="recipes-nav-link" href="{% url 'recipes' %}" class="nav-link">Recipes</a>
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link text-center">Home</a>
                     </li>
-                    <li class="nav-item text-center">
-                        <a href="#" class="nav-link">Calendar</a>
+                    <li id="recipes-nav-item" class="nav-item">
+                        <a id="recipes-nav-link" href="{% url 'recipes' %}" class="nav-link text-center">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-center">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-center">Lists</a>
                     </li>
                 </ul>
             </div>
-            <button class="nav-button" id="nav-next">next</button>
         </div>
     </nav>
     <div id="content" name="content">
