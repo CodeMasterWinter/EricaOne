@@ -14,8 +14,14 @@ def index(request):
     else:
         meal_time = "Breakfast"
 
+    all_dishes = Dish.objects.all()
+    category = Category.objects.get(name=meal_time)
+    dish_filter = all_dishes.filter(categories=category)
+    dishes = sample(list(dish_filter), 2)
+
     context = {
         'meal_time': meal_time,
+        'dishes': dishes,
     }
 
     return render(request, 'EricaOne/index.html', context)
@@ -26,18 +32,20 @@ def recipes(request):
     all_categories = Category.objects.all()
     categories = sample(list(all_categories), 4)
     all_dishes = Dish.objects.all()
-    dishes = []
 
+    results = []
 
     for category in categories:
-        dishcount = 0
-        for dish in all_dishes:
-            if category in dish.get_categories:
-                dishes.append(dish)
-                dishcount += 1
-                if dishcount == 4:
-                    break
-        if len(dishes) == 16:
+        dishes_in_category = list(all_dishes.filter(categories=category))
+        random_dishes = sample(dishes_in_category, min(4, len(dishes_in_category)))
+
+        category_data = {
+            'category': category,
+            'dishes': random_dishes,
+        }
+
+        results.append(category_data)
+        if len(results) == 4:
             break
 
     if request.method == "POST":
@@ -59,7 +67,7 @@ def recipes(request):
     context = {
         'dishForm': dishForm,
         'categories': categories,
-        'dishes': dishes,
+        'results': results,
     }
 
     return render(request, 'EricaOne/recipes.html', context)

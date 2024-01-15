@@ -38,3 +38,98 @@
     animation: riseIn 1s ease-out, fadeIn 1s ease-out;
     border-left: 10px solid #7e3cff;
 }
+
+.meal-suggestions {
+    background-color: #0000000e;
+    border-radius: 2vh;
+}
+
+.dish-column {
+    height: 50%;
+}
+
+.dish-card {
+    border-radius: 2vh;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.dish-overlay {
+    height: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    transition: all 0.3s ease;
+    background-color: #7d3cff49;
+}
+
+.dish-card:hover .dish-overlay {
+    height: 100%;
+}
+
+.dish-image {
+    width: 100%;
+    height: 55%;
+}
+
+.dish-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dish-info {
+    width: 100%;
+    height: 45%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dish-title {
+    font-weight: 700;
+}
+
+.dish-prep, .prep-icon{
+    color: #7e3cff;
+    font-weight: 700;
+}
+
+.dish-servings{
+    font-weight: 600;;
+    opacity: 0.7;
+}
+
+.dish-link {
+    top: 55%;
+    left: 50%;
+    opacity: 0;
+    z-index: 10;
+    visibility: hidden;
+    font-weight: 700;
+    background-color: #000000;
+    text-decoration: none;
+    border-radius: 5vh;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.dish-card:hover .dish-link {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dish-link:hover{
+    color: #ffffff;
+    background-color: #7e3cff;
+}
+
+.dish-link:active{
+    background-color: #7e3cff;
+}

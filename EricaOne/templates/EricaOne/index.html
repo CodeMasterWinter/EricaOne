@@ -9,7 +9,41 @@
     <h2 class="page-header display-4 mx-3 my-5 ps-3">
         Welcome back, Winter!
     </h2>
-    <h5 class="meal-suggestion mx-3">
-        {{meal_time}} Suggestions:
-    </h5>
+    <div class="meal-suggestion">
+        <h5 class="meal-suggestion-title mx-3">
+            {{meal_time}} Suggestions:
+        </h5>
+        <div class="meal-suggestions p-4">
+            {% for dish in dishes %}
+            <div class="dish-column col-4 col-lg-3 px-1">
+                <div class="card dish-card">
+                    <div class="dish-image">
+                        {% if dish.image %}
+                            <img src="{{dish.image.url}}" class="dish-img">
+                        {% else %}
+                            <img src="{% static 'EricaOne/images/brand/no-image.png' %}" class="dish-img">    
+                        {% endif %}
+                    </div>
+                    <div class="dish-info p-3">
+                        <h4 class="dish-title mb-3">{{dish.name}}</h4>
+                        <p class="dish-prep m-0">
+                            <i class="fa-solid fa-clock prep-icon pe-1"></i>
+                            {% if dish.prep_hours != 0 %}
+                                {{dish.prep_hours}}hr 
+                            {%endif%} 
+                            {{dish.prep_minutes}} min
+                        </p>
+                        <p class="dish-servings m-0">
+                            <i class="fa-solid fa-utensils pe-1"></i>
+                            {{dish.servings}} servings
+                        </p>
+                    </div>
+                    <div class="dish-overlay">
+                    </div>
+                    <a href="{% url 'recipe' dish.id %}" class="dish-link px-5 py-3">See dish</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
