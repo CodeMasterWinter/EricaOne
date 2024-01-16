@@ -33,61 +33,58 @@
 }
 
 .page-header {
+    display: flex;
     color: #000000;
     font-weight: 700;
+    align-items: center;
     animation: riseIn 1s ease-out, fadeIn 1s ease-out;
     border-left: 10px solid #7e3cff;
 }
 
+.meal-suggestion {
+    height: 100%;
+    display: inline-block;
+}
+
+.meal-suggestion-title {
+    font-weight: 700;
+}
+
 .meal-suggestions {
-    background-color: #0000000e;
     border-radius: 2vh;
+    background-color: #00000015;
 }
 
-.dish-column {
-    height: 50%;
-}
-
-.dish-card {
+.dish-card{
+    width: 18vw;
+    height: 30vh;
     border-radius: 2vh;
-    height: 100%;
-    border: none;
-    cursor: pointer;
     position: relative;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.dish-overlay {
-    height: 0;
-    bottom: 0;
-    z-index: 10;
-    width: 100%;
-    position: absolute;
-    transition: all 0.3s ease;
-    background-color: #7d3cff49;
-}
-
-.dish-card:hover .dish-overlay {
-    height: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .dish-image {
     width: 100%;
-    height: 55%;
+    height: 60%;
 }
 
-.dish-img{
+.dish-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
 }
 
 .dish-info {
     width: 100%;
-    height: 45%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    border-bottom-left-radius: 2vh;
+    border-bottom-right-radius: 2vh;
 }
 
 .dish-title {
@@ -102,6 +99,16 @@
 .dish-servings{
     font-weight: 600;;
     opacity: 0.7;
+}
+
+.dish-overlay {
+    height: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    transition: all 0.3s ease;
+    background-color: #7d3cff49;
 }
 
 .dish-link {
