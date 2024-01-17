@@ -1,0 +1,16 @@
+{% extends 'EricaOne/base.html' %}
+{% load static %}
+
+{% block recipes_styles %}
+    <link rel="stylesheet" href="{% static 'EricaOne/recipe.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header class="mt-5">
+        {% if recipe.image %}
+            <img src="{{recipe.image.url}}" alt="{{recipe}} as page header" class="header-img img-fluid">
+        {% endif %}
+        <h2 class="display-2 header-title mx-4">{{recipe}}</h2>
+        <div class="header-backdrop"></div>
+    </header>
+{% endblock %}

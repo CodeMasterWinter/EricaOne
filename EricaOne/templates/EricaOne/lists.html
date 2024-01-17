@@ -1,0 +1,39 @@
+{% extends 'EricaOne/base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'EricaOne/lists.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="lists-header mb-3">
+        <h2 class="page-header display-4 mx-3 ps-3">
+            Your Lists
+        </h2>
+        <form action="{% url 'search_recipes' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+            {% csrf_token %}
+            <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
+            <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+    <div class="container-fluid list-container p-0 m-0">
+        <div class="row list-row m-0">
+            {% for list in lists %}
+            <div class="list-column col-4 col-lg-3 mb-4">
+                <div class="card list-card">
+                    <h3 class="list-title m-0 ps-2">
+                        {{list}}
+                    </h3>
+                    <ul class="list-items p-0 ms-2 mt-3">
+                        {% for listitem in list.listItems.all %}
+                            <li class="list-item mb-1 ps-2">{{listitem}}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="card-overlay"></div>
+                    <a href="{% url 'list' list.id %}" class="list-link px-5 py-3">See list</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

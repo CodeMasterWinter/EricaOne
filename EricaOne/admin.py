@@ -25,15 +25,15 @@ class CategoryAdmin(admin.ModelAdmin):
     inlines = [DishInline]
 
 
-class ListItemsInline(admin.TabularInline):
+class ListInline(admin.TabularInline):
     model = List.listItems.through
     extra = 0
 
 
-class ListAdmin(admin.ModelAdmin):
-    inlines = [ListItemsInline]
+class ListItemAdmin(admin.ModelAdmin):
+    inlines = [ListInline]
 
 
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(List, ListAdmin)
-admin.site.register(ListItem)
+admin.site.register(List)
+admin.site.register(ListItem, ListItemAdmin)

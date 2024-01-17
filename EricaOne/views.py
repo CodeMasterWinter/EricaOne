@@ -1,6 +1,6 @@
 from random import sample
 from .forms import NewDish
-from .models import Dish, Category
+from .models import Dish, Category, List, ListItem
 from EricaOne.Scripts.Ericadatetime import DateTime
 from django.shortcuts import render, redirect, reverse
 
@@ -117,3 +117,27 @@ def recipe(request, recipe_id):
     }
 
     return render(request, 'EricaOne/recipe.html', context)
+
+
+def lists(request):
+
+    my_lists = List.objects.all()
+
+    context = {
+        'lists': my_lists,
+        'page_title': "Lists",
+    }
+
+    return render(request, 'EricaOne/lists.html', context)
+
+
+def list(request, list_id):
+
+    recipe = List.objects.get(id=list_id)
+
+    context = {
+        'recipe': recipe,
+        'page_title': "Lists",
+    }
+
+    return render(request, 'EricaOne/list.html', context)

@@ -1,0 +1,140 @@
+.container-fluid {
+    padding: 0;
+}
+
+.lists-header {
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+}
+
+.page-header {
+    color: #ffffff;
+    font-weight: 700;
+    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
+    border-left: 10px solid #7e3cff;
+}
+
+.searchbar {
+    width: 35%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
+}
+
+#id_searchbar {
+    width: 98%;
+    height: 6vh;
+    padding: 1vw;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 6vh;
+}
+
+.searchbar-icon {
+    right: 0;
+    width: 4vw;
+    height: 6vh;
+    border: none;
+    display: flex;
+    color: #ffffff;
+    position: absolute;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+    border-top-right-radius: 6vh;
+    border-bottom-right-radius: 6vh;
+    background-color: #7e3cff;
+    transition: all 0.3s ease;
+}
+
+.searchbar-icon:hover {
+    background-color: #6b21ff;
+}
+
+.list-column {
+    height: 25vh;
+}
+
+.list-card {
+    z-index: 5;
+    height: 100%;
+    border: none;
+    border-radius: 1vh;
+    position: relative;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.list-title {
+    height: 20%;
+    display: flex;
+    font-weight: 700;
+    color: #ffffff;
+    align-items: center;
+    transition: 0.3s ease;
+    border-top-left-radius: 1vh;
+    border-top-right-radius: 1vh;
+    background-color: #7e3cff;
+}
+
+.list-items {
+    list-style: none;
+}
+
+.list-item {
+    font-weight: 600;
+    border-left: 5px solid #000000;
+}
+
+.card-overlay {
+    bottom: 0;
+    height: 0;
+    z-index: 6;
+    width: 100%;
+    position: absolute;
+    border-radius: 1vh;
+    transition: height 0.2s ease-in-out;
+    background-color: #7d3cff4f;
+}
+
+.list-card:hover .card-overlay {
+    height: 100%;
+}
+
+.list-card:hover .list-title {
+    background-color: #000000;
+}
+
+.list-link {
+    top: 55%;
+    left: 50%;
+    opacity: 0;
+    z-index: 10;
+    visibility: hidden;
+    font-weight: 700;
+    background-color: #000000;
+    text-decoration: none;
+    border-radius: 5vh;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.list-card:hover .list-link {
+    opacity: 1;
+    visibility: visible;
+}
+
+.list-link:hover{
+    color: #ffffff;
+    background-color: #7e3cff;
+}
+
+.list-link:active{
+    background-color: #6b21ff;
+}
