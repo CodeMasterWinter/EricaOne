@@ -44,6 +44,7 @@
 .meal-suggestion {
     height: 100%;
     display: inline-block;
+    animation: fadeIn 2s ease-in;
 }
 
 .meal-suggestion-title {

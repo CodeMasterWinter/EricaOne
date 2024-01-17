@@ -101,6 +101,7 @@
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
+    animation: fadeIn 2s ease-in;
     background-color: #0000000c;
 }
 
@@ -109,6 +110,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 2s ease-in;
 }
 
 .search-row {
