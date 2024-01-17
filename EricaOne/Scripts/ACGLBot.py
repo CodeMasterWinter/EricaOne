@@ -25,7 +25,7 @@ time.sleep(3)
 nav = driver.find_element(By.CSS_SELECTOR, '[title="Redragon Digital Keyboard Rebuild"]')
 nav.click()
 #rebuild sequence
-sequence_counter = 1
+sequence_counter = 0
 
 while sequence_counter <= 50:
         if sequence_counter > 0:

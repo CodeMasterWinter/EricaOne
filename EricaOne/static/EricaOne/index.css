@@ -48,6 +48,19 @@
 
 .meal-suggestion-title {
     font-weight: 700;
+    display: inline-block;
+}
+
+.meal-suggestion-wrap {
+    display: inline-block;
+}
+
+.meal-suggestion-link {
+    border: none;
+    font-weight: 600;
+    color: #7e3cff;
+    text-decoration: none;
+    background: none;
 }
 
 .meal-suggestions {
@@ -80,7 +93,10 @@
     width: 100%;
     height: 40%;
     display: flex;
+    overflow: hidden;
+    white-space: nowrap;
     flex-direction: column;
+    text-overflow: ellipsis;
     justify-content: center;
     background-color: #ffffff;
     border-bottom-left-radius: 2vh;
@@ -106,9 +122,14 @@
     bottom: 0;
     z-index: 10;
     width: 100%;
+    border-radius: 2vh;
     position: absolute;
     transition: all 0.3s ease;
     background-color: #7d3cff49;
+}
+
+.dish-card:hover .dish-overlay {
+    height: 100%;
 }
 
 .dish-link {

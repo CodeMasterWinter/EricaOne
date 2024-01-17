@@ -22,6 +22,7 @@ def index(request):
     context = {
         'meal_time': meal_time,
         'dishes': dishes,
+        'page_title': 'Home'
     }
 
     return render(request, 'EricaOne/index.html', context)
@@ -68,6 +69,7 @@ def recipes(request):
         'dishForm': dishForm,
         'categories': categories,
         'results': results,
+        'page_title': 'Recipes'
     }
 
     return render(request, 'EricaOne/recipes.html', context)
@@ -91,6 +93,19 @@ def search_recipes(request):
         }
 
         return render(request, 'EricaOne/search_recipe.html', context)
+
+
+def suggestion_recipes(request, category):
+
+    category = Category.objects.get(name=category)
+    results = Dish.objects.filter(categories=category)
+
+    context = {
+        'category': category,
+        'results': results,
+    }
+
+    return render(request, 'EricaOne/search_recipe.html', context)
 
 
 def recipe(request, recipe_id):
