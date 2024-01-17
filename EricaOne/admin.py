@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Dish, Ingredient, Category
+from .models import Dish, Ingredient, Category, List, ListItem
 
 
 class IngredientInline(admin.TabularInline):
@@ -25,4 +25,15 @@ class CategoryAdmin(admin.ModelAdmin):
     inlines = [DishInline]
 
 
+class ListItemsInline(admin.TabularInline):
+    model = List.listItems.through
+    extra = 0
+
+
+class ListAdmin(admin.ModelAdmin):
+    inlines = [ListItemsInline]
+
+
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(List, ListAdmin)
+admin.site.register(ListItem)

@@ -56,3 +56,20 @@ class Ingredient(models.Model):
             return f"{self.quantity} {self.name}"
         else:
             return f"{self.quantity} {self.unit} {self.name}"
+
+
+class ListItem(models.Model):
+
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class List(models.Model):
+
+    title = models.CharField(max_length=255)
+    listItems = models.ManyToManyField(ListItem, blank=True)
+
+    def __str__(self):
+        return self.title

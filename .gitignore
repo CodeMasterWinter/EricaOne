@@ -3,3 +3,5 @@ EricaOne/__pycache__/
 virtual/
 db.sqlite3
 EricaOne/Scripts/__pycache__/
+EricaOne/migrations/__pycache__/
+EricaOne/migrations
