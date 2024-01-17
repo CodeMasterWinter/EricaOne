@@ -72,7 +72,7 @@
 .dish-card{
     width: 18vw;
     height: 30vh;
-    border-radius: 2vh;
+    border-radius: 1.5vh;
     position: relative;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -86,8 +86,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-top-left-radius: 2vh;
-    border-top-right-radius: 2vh;
+    border-top-left-radius: 1vh;
+    border-top-right-radius: 1vh;
 }
 
 .dish-info {
@@ -100,8 +100,8 @@
     text-overflow: ellipsis;
     justify-content: center;
     background-color: #ffffff;
-    border-bottom-left-radius: 2vh;
-    border-bottom-right-radius: 2vh;
+    border-bottom-left-radius: 1.5vh;
+    border-bottom-right-radius: 1.5vh;
 }
 
 .dish-title {
@@ -123,7 +123,7 @@
     bottom: 0;
     z-index: 10;
     width: 100%;
-    border-radius: 2vh;
+    border-radius: 1.5vh;
     position: absolute;
     transition: all 0.3s ease;
     background-color: #7d3cff49;
@@ -134,7 +134,7 @@
 }
 
 .dish-link {
-    top: 55%;
+    top: 60%;
     left: 50%;
     opacity: 0;
     z-index: 10;
