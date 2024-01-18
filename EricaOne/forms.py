@@ -15,3 +15,8 @@ class NewDish(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+
+
+class newList(forms.Form):
+    title = forms.CharField(max_length=255, required=True)
+    listItems = forms.CharField(widget=forms.Textarea, required=False)

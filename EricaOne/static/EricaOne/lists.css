@@ -138,3 +138,17 @@
 .list-link:active{
     background-color: #6b21ff;
 }
+
+.newList-toggle {
+    right: 0;
+    border: none;
+    margin-right: 8vw;
+    background: none;
+    font-size: 1.5em;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.newList-toggle:hover {
+    transform: rotate(90deg);
+}

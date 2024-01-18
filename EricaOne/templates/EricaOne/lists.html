@@ -4,6 +4,9 @@
 {% block styles %}
     <link rel="stylesheet" href="{% static 'EricaOne/lists.css' %}">
 {% endblock %}
+{% block addList %}
+    <a href="#newList" class="newList-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
+{% endblock%}
 
 {% block content %}
     <div class="lists-header mb-3">
@@ -34,6 +37,23 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block newList %}
+    <div class="offcanvas offcanvas-end show" id="newList" aria-labelledby="newList-label">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close sidebar-close m-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" class="sidebar-logo">
+            <h5 class="offcanvas-title" id="newList-label">New List</h5>
+        </div>
+        <div class="offcanvas-body p-0">
+           <form action="/lists" method="post">
+                {{listForm}}
+                {% csrf_token %}
+                <button type="submit">Save</button>
+           </form>
         </div>
     </div>
 {% endblock %}

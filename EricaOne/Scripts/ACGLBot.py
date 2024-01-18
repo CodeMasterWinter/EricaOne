@@ -27,7 +27,7 @@ nav.click()
 #rebuild sequence
 sequence_counter = 0
 
-while sequence_counter <= 50:
+while True:
         if sequence_counter > 0:
             retry = driver.find_element(By.ID, "try_again")
             retry.click()

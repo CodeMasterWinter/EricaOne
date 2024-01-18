@@ -38,6 +38,7 @@
             <a href="/"  class="nav-logo"><img src="{% static 'EricaOne/brand/logos/text-logo-black.png' %}" alt="" class="nav-logo-img"></a>
             <a href="#sidebar" class="noti-toggle" data-bs-toggle="offcanvas" role="button" aria-controls="sidebar"><i class="fa-regular fa-bell nav-icon"></i></a>
             {% block addDish %}{% endblock %}
+            {% block addList %}{% endblock %}
         </div>
     </nav>
     <nav class="scroll-nav navbar navbar-expand-md p-0">
@@ -132,6 +133,8 @@
         </div>
     </div>
     {% block newDish %}
+    {% endblock %}
+    {% block newList %}
     {% endblock %}
     <script>
         var page_title = "{{ page_title }}";

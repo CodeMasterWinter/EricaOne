@@ -1,5 +1,5 @@
 from random import sample
-from .forms import NewDish
+from .forms import NewDish, newList
 from .models import Dish, Category, List, ListItem
 from EricaOne.Scripts.Ericadatetime import DateTime
 from django.shortcuts import render, redirect, reverse
@@ -123,20 +123,41 @@ def lists(request):
 
     my_lists = List.objects.all()
 
+    if request.method == "POST":
+        listForm = newList(request.POST)
+        if listForm.is_valid():
+            title = listForm.cleaned_data["title"],
+            title = list(title)
+            newlist = List(title=title[0])
+            list_items = listForm.cleaned_data["listItems"]
+            newlist.save()
+
+            list_items_list = list_items.split(", ")
+            for listitem in list_items_list:
+                newlistitem = ListItem(name=listitem)
+                newlistitem.save()
+                newlist.listItems.add(newlistitem)
+
+            newlist.save()
+            return redirect('lists')
+    else:
+        listForm = newList()
+
     context = {
         'lists': my_lists,
+        'listForm': listForm,
         'page_title': "Lists",
     }
 
     return render(request, 'EricaOne/lists.html', context)
 
 
-def list(request, list_id):
+def myList(request, list_id):
 
-    recipe = List.objects.get(id=list_id)
+    the_list = List.objects.get(id=list_id)
 
     context = {
-        'recipe': recipe,
+        'list': the_list,
         'page_title': "Lists",
     }
 
