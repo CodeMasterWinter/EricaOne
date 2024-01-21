@@ -34,7 +34,28 @@
                     </ul>
                     <div class="list-actions pe-2">
                         <a href="{% url 'list' list.id %}" class="list-link px-3 py-2 me-2">See list</a>
-                        <a href="{% url 'delete_list' list.id %}" class="delete-link list-link px-3 py-2 me-2">Delete</a>
+                        <button data-bs-toggle="modal" data-bs-target="#delete-list-confirmation" class="delete-link list-link px-3 py-2 me-2">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="delete-list-confirmation" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Are you sure?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-body-text">
+                                Are you sure you want to delete "{{list}}" <span>permanently?</span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="list-link dismiss-link px-3 py-2 me-2" data-bs-dismiss="modal">No, Keep it</button>
+                            <a href="{% url 'delete_list' list.id %}" class="delete-link list-link px-3 py-2 me-2">Yes, Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>
