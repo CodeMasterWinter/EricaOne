@@ -10,12 +10,14 @@
         Welcome back, Winter!
     </h2>
     <div class="meal-suggestion mx-3">
-        <h5 class="meal-suggestion-title">
-            {{meal_time}} Suggestions:
-        </h5>
-        <a href="{% url 'suggestion_results' meal_time %}" class="meal-suggestion-link ms-5">
-            See all
-        </a>
+        <div class="meal-suggestion-labels px-1">
+            <h5 class="meal-suggestion-title">
+                {{meal_time}} Suggestions:
+            </h5>
+            <a href="{% url 'suggestion_results' meal_time %}" class="meal-suggestion-link ms-5">
+                See all
+            </a>
+        </div>
         <div class="meal-suggestions d-grid gap-2 p-2">
             {% for dish in dishes %}
                 <div class="dish-card">

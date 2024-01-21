@@ -47,6 +47,12 @@
     animation: fadeIn 2s ease-in;
 }
 
+.meal-suggestion-labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .meal-suggestion-title {
     font-weight: 700;
     display: inline-block;

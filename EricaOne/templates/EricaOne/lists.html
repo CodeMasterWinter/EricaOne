@@ -27,13 +27,15 @@
                     <h3 class="list-title m-0 ps-2">
                         {{list}}
                     </h3>
-                    <ul class="list-items p-0 ms-2 mt-3">
+                    <ul class="list-items p-0 m-0 ms-2 mt-3">
                         {% for listitem in list.listItems.all %}
                             <li class="list-item mb-1 ps-2">{{listitem}}</li>
                         {% endfor %}
                     </ul>
-                    <div class="card-overlay"></div>
-                    <a href="{% url 'list' list.id %}" class="list-link px-5 py-3">See list</a>
+                    <div class="list-actions pe-2">
+                        <a href="{% url 'list' list.id %}" class="list-link px-3 py-2 me-2">See list</a>
+                        <a href="{% url 'delete_list' list.id %}" class="delete-link list-link px-3 py-2 me-2">Delete</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -42,18 +44,23 @@
 {% endblock %}
 
 {% block newList %}
-    <div class="offcanvas offcanvas-end show" id="newList" aria-labelledby="newList-label">
+    <div class="offcanvas offcanvas-end" id="newList" aria-labelledby="newList-label">
         <div class="offcanvas-header">
             <button type="button" class="btn-close sidebar-close m-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" class="sidebar-logo">
             <h5 class="offcanvas-title" id="newList-label">New List</h5>
         </div>
         <div class="offcanvas-body p-0">
-           <form action="/lists" method="post">
-                {{listForm}}
+            <form id="newListForm" action="/lists" enctype="multipart/form-data" class="p-3" method="post">
                 {% csrf_token %}
-                <button type="submit">Save</button>
-           </form>
+                <label for="id_title">Title:</label>  
+                <input type="text" name="title" maxlength="255" required="" id="id_title" class="mb-3">
+                
+                <label for="id_listItems">Listitems:</label>
+                <textarea name="listItems" cols="40" rows="10" id="id_listItems" class="mb-3" placeholder="separate items by 'comma, space'"></textarea>
+                
+                <button id="submit" type="submit" class="btn btn-lg">Save</button>            
+            </form>
         </div>
     </div>
 {% endblock %}

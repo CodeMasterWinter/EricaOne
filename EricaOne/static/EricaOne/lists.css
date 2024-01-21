@@ -65,7 +65,6 @@
     height: 100%;
     border: none;
     border-radius: 1vh;
-    position: relative;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
@@ -83,6 +82,7 @@
 
 .list-items {
     list-style: none;
+    height: 55%;
 }
 
 .list-item {
@@ -90,39 +90,28 @@
     border-left: 5px solid #000000;
 }
 
-.card-overlay {
-    bottom: 0;
-    height: 0;
-    z-index: 6;
+.list-actions {
     width: 100%;
-    position: absolute;
-    border-radius: 1vh;
-    transition: height 0.2s ease-in-out;
-    background-color: #7d3cff4f;
-}
-
-.list-card:hover .card-overlay {
-    height: 100%;
-}
-
-.list-card:hover .list-title {
-    background-color: #000000;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .list-link {
-    top: 55%;
-    left: 50%;
-    opacity: 0;
-    z-index: 10;
-    visibility: hidden;
     font-weight: 700;
     background-color: #000000;
     text-decoration: none;
     border-radius: 5vh;
-    transform: translate(-50%, -50%);
-    position: absolute;
     transition: all 0.3s ease;
     color: #ffffff;
+}
+
+.delete-link {
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: red;
 }
 
 .list-card:hover .list-link {
@@ -151,4 +140,55 @@
 
 .newList-toggle:hover {
     transform: rotate(90deg);
+}
+
+#newListForm {
+    width: 100%;
+}
+
+#newListForm label{
+    display: block;
+    font-weight: 700;
+}
+
+#newListForm input{
+    width: 100%;
+    height: 6vh;
+    border: none;
+    outline: none;
+    padding: 1vw;
+    font-weight: 700;
+    color: #7e3cff;
+    border-radius: 1vh;
+    background-color: #0000001a;
+}
+
+#newListForm textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 1vh;
+    font-weight: 700;
+    color: #7e3cff;
+    border-radius: 1vh;
+    background-color: #0000001a;
+}
+
+#submit {
+    width: 100%;
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+#submit:hover {
+    background-color: #7e3cff;
+}
+
+#durationField {
+    display: flex;
+    justify-content: space-between;
 }

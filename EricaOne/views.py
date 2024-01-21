@@ -2,7 +2,7 @@ from random import sample
 from .forms import NewDish, newList
 from .models import Dish, Category, List, ListItem
 from EricaOne.Scripts.Ericadatetime import DateTime
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 
 def index(request):
@@ -150,6 +150,12 @@ def lists(request):
     }
 
     return render(request, 'EricaOne/lists.html', context)
+
+
+def delete_list(request, list_id):
+    list_to_delete = get_object_or_404(List, id=list_id)
+    list_to_delete.delete()
+    return redirect('lists')
 
 
 def myList(request, list_id):
