@@ -13,4 +13,7 @@
         <h2 class="display-2 header-title mx-4">{{recipe}}</h2>
         <div class="header-backdrop"></div>
     </header>
+    {% for listitem in list.listItems.all %}
+        {{listitem}}
+    {% endfor %}
 {% endblock %}

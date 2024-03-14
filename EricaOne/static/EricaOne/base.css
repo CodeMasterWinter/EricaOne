@@ -1,118 +1,94 @@
 * {
-    font-family: 'Montserrat', 'Poppins', 'Didact Gothic';
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', 'Poppins';
+    box-sizing: border-box;
 }
 
 body {
-    transition: background-color 0.3s ease;
-}
-
-.dark-mode {
-    background-color: #181818;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.dark-light-container {
-    left: 5vw;
+    height: 100dvh;
     display: flex;
-    place-items: center;
-    position: absolute;
+    flex-direction: column;
 }
 
-#dark-light {
-    width: 4vw;
-    height: 4vh;
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    border-radius: 3vh;
-    position: relative;
-    padding: 1px;
-    border: 2px solid #000000;
-    transition: 0.4s;
-}
-
-#dark-light:checked {
-    border-color: #ffffff;
-}
-
-#dark-light::before {
-    top: 0;
-    left: 0;
-    width: calc(4vh - 4px);
-    height: calc(4vh - 4px);
-    content: "";
-    border-radius: 50%;
-    position: absolute;
-    transform: scale(0.8);
-    transition: 0.4s;
-    background: #000000;
-}
-
-#dark-light:checked::before {
-    left: calc(100% - 4vh + 4px);
-    background: none;
+#splash {
+    inset: 0;
+    z-index: 99;
+    display: grid;
+    position: fixed;
+    place-content: center;
     background-color: #ffffff;
+    transition: opacity .4s ease-in-out, visibility .4s ease-in-out;
 }
 
-.logo-nav {
-    height: 13vh;
-    border-bottom: 1px solid #0000001f;
+#splash.invisible {
+    opacity: 0;
+    visibility: hidden;
 }
 
-.scroll-nav {
-    height: 4vh;
+.splash-logo {
+    height: 10rem;
+    animation: 1s forwards fall-in ease-in-out;
 }
 
-.logo-nav-container {
-    height: 100%;
-}
-
-.scroll-nav-container {
-    height: 100%;
-}
-
-.nav-logo {
-    height: 100%;
-    animation: fadeIn 2s ease-out;
-}
-
-.nav-logo-img {
+.splash-logo-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.nav-button {
-    width: 4vw;
+#splash-loader {
+    width: 16rem;
+}
+
+#splash-loader text.text-body {
+    font-size: 5rem;
+    stroke-width: 2;
+    font-weight: 700;
+    stroke: #000000;
+    font-family: 'Montserrat';
+    animation: 6s infinite alternate logo-stroke;
+}
+
+.nav {
+    height: 8rem;
+}
+
+.logo-nav {
+    height: 6rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    border-bottom: 1px solid #0000001f;
+}
+
+.nav-logo {
+    width: 8rem;
     height: 100%;
-    border: none;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 2s ease-out;
 }
 
-#main-nav {
-    width: 100%;
+.nav-logo-img {
+    height: 100%;
 }
 
-.nav-icon {
-    color: #000000;
-}
-
-.noti-toggle {
+.nav-toggle {
     right: 0;
-    margin-right: 4vw;
     border: none;
     background: none;
     font-size: 1.5em;
+    color: #000000;
     position: absolute;
     transition: all 0.2s ease;
+}
+
+.noti-toggle {
+    margin-right: 4rem;
 }
 
 .noti-toggle:hover {
@@ -123,35 +99,34 @@ body {
     color: #7e3cff;
 }
 
-#dark-light:checked .noti-toggle {
-    color: #ffffff;
-}
-
-.navbar-nav{
+.nav-list {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    height: 4vh;
+    height: 2.2rem;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 8px 8px -6px;
 }
 
-.navbar-toggler {
-    border: none;
-}
-
-.nav-item{
+.nav-item {
     width: 100%;
     height: 100%;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .nav-item::after {
-    left: 0;
+    left: 50%;
     bottom: 0;
     width: 0px;
     height: 2px;
     content: '';
     position: absolute;
-    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    transition: all 0.3s ease-in-out;
     background-color: #7e3cff;
 }
 
@@ -159,76 +134,116 @@ body {
     width: 100%;
 }
 
-.nav-item:hover {
-    background-color: #00000010;
-}
-
 .nav-link {
     height: 100%;
-    color: #131313;
-    font-weight: 600;
-    font-family: 'Poppins';
-}
-
-#dark-light:checked .nav-link{
-    color: #ffffff;
-}
-
-.sidebar-close {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: grid;
     color: #000000;
+    font-weight: 600;
+    place-content: center;
 }
 
-.offcanvas-header {
-    height: 16vh;
+#content {
+    height: calc(100dvh - 8rem);
+}
+
+.sub-header {
+    height: 20vh;
     display: flex;
-    flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.15) 0 1.95px 2.6px;
+    align-items: center;
+    background-color: #000000;
 }
 
-.sidebar-logo {
-    width: 20%;
-    height: auto;
-    object-fit: contain;
+.page-header {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2.5rem;
+    border-left: 10px solid #7e3cff;
 }
 
-.offcanvas-title {
-    font-family: 'Poppins';
-    font-weight: 600;
+.searchbar {
+    width: 35%;
+    display: flex;
+    position: relative;
+    align-items: center;
 }
 
-.noti-title {
-    font-weight: 600;
-}
-.noti-content{
-    font-family: 'Poppins';
+#id_searchbar {
+    width: 98%;
+    height: 3rem;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 3rem;
 }
 
-.offcanvas-item {
-    background-color: transparent;
+.searchbar-icon {
+    right: 0;
+    width: 4rem;
+    height: 3rem;
+    border: none;
+    display: flex;
+    color: #ffffff;
+    position: absolute;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    background-color: #7e3cff;
+    transition: background-color 0.3s ease;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .noti-toggle {
-        margin-right: 6vw;
+.searchbar-icon:hover {
+    background-color: #6b21ff;
+}
+
+.main-container {
+    height: 95%;
+}
+
+@keyframes fall-in {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -3rem, 0);
     }
 
-    .offcanvas-header {
-        height: 12vh;
-        display: flex;
-        flex-direction: column;
-        box-shadow: rgba(0, 0, 0, 0.15) 0 1.95px 2.6px;
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes logo-stroke {
+    0% {
+        fill: transparent;
+        stroke: #000000;
+        stroke-width: 3;
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 32%;
     }
 
-    .offcanvas-title {
-        font-size: 1.5em;
+    50% {
+        fill: transparent;
+        stroke: #000000;
+        stroke-width: 3;
     }
 
-    .sidebar-logo {
-        width: 25%;
-        height: auto;
-        object-fit: contain;
+    80% {
+        fill: #000000;
+        stroke: transparent;
+        stroke-width: 0;
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 32% 0;
+    }
+
+    90% {
+        fill: #7e3cff;
+    }
+
+    100% {
+        fill: #000000;
+        stroke: transparent;
+        stroke-width: 0;
     }
 }

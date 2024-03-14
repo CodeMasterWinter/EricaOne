@@ -1,5 +1,6 @@
 from random import sample
-from .forms import NewDish, newList
+from django.http import Http404
+from .forms import NewDish, newList, AddListItems
 from .models import Dish, Category, List, ListItem
 from EricaOne.Scripts.Ericadatetime import DateTime
 from django.shortcuts import render, redirect, reverse, get_object_or_404
@@ -86,13 +87,12 @@ def search_recipes(request):
             'results': results,
         }
 
-        return render(request, 'EricaOne/search_recipe.html', context)
     else:
         context = {
 
         }
 
-        return render(request, 'EricaOne/search_recipe.html', context)
+    return render(request, 'EricaOne/search.html', context)
 
 
 def suggestion_recipes(request, category):
@@ -105,7 +105,7 @@ def suggestion_recipes(request, category):
         'results': results,
     }
 
-    return render(request, 'EricaOne/search_recipe.html', context)
+    return render(request, 'EricaOne/search.html', context)
 
 
 def recipe(request, recipe_id):
@@ -119,8 +119,24 @@ def recipe(request, recipe_id):
     return render(request, 'EricaOne/recipe.html', context)
 
 
+def check_monthly_budget():
+    month = DateTime().month()
+    try:
+        target = List.objects.get(title__contains="Monthly budget")
+        if target.title.lower() == f"monthly budget - {month.lower()}":
+                pass
+        else:
+            target.delete()
+            budget_list = List(title=f"Monthly budget - {month}")
+            budget_list.save()
+    except List.DoesNotExist:
+            budget_list = List(title=f"Monthly budget - {month}")
+            budget_list.save()
+
+
 def lists(request):
 
+    check_monthly_budget()
     my_lists = List.objects.all()
 
     if request.method == "POST":
@@ -147,9 +163,47 @@ def lists(request):
         'lists': my_lists,
         'listForm': listForm,
         'page_title': "Lists",
+        'addListItems': AddListItems,
     }
 
     return render(request, 'EricaOne/lists.html', context)
+
+
+def search_lists(request):
+
+    if request.method == "POST":
+        searchbar = request.POST["searchbar"]
+        results = Dish.objects.filter(name__contains=searchbar)
+
+        context = {
+            'searchbar': searchbar,
+            'results': results,
+        }
+
+    else:
+        context = {
+
+        }
+
+    return render(request, 'EricaOne/search.html', context)
+
+
+def add_list_items(request, list_id):
+    if request.method == "POST":
+
+        target_list = get_object_or_404(List, id=list_id)
+        newlistitems = AddListItems(request.POST)
+
+        if newlistitems.is_valid():
+
+            list_items = newlistitems.cleaned_data["listItems"].split(", ")
+            for listitem in list_items:
+                newlistitem = ListItem.objects.create(name=listitem)
+                newlistitem.save()
+                target_list.listItems.add(newlistitem)
+            target_list.save()
+
+        return redirect('lists')
 
 
 def delete_list(request, list_id):

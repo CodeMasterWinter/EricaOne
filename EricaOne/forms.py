@@ -17,6 +17,10 @@ class NewDish(forms.Form):
     )
 
 
+class AddListItems(forms.Form):
+    listItems = forms.CharField(widget=forms.Textarea, required=True)
+
+
 class newList(forms.Form):
     title = forms.CharField(max_length=255, required=True)
     listItems = forms.CharField(widget=forms.Textarea, required=False)

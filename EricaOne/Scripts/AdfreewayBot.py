@@ -9,10 +9,10 @@ driver.get('https://adfreeway.com/users/sign_in')
 
 #login sequence
 username = driver.find_element(By.ID, "user_email")
-username.send_keys("thesuperlonely+1@gmail.com")
+username.send_keys("langelihlemogotsi@gmail.com")
 
 password = driver.find_element(By.ID, "user_password")
-password.send_keys("adfreewaysucks")
+password.send_keys("L2lpabp2013")
 time.sleep(3)
 
 submit = driver.find_element(By.ID,"access-wifi-btn")

@@ -5,71 +5,98 @@
     <link rel="stylesheet" href="{% static 'EricaOne/lists.css' %}">
 {% endblock %}
 {% block addList %}
-    <a href="#newList" class="newList-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
+    <a href="#newList" class="nav-toggle newList-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
 {% endblock%}
 
 {% block content %}
-    <div class="lists-header mb-3">
-        <h2 class="page-header display-4 mx-3 ps-3">
-            Your Lists
-        </h2>
-        <form action="{% url 'search_recipes' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
-            {% csrf_token %}
-            <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
-            <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-    </div>
-    <div class="container-fluid list-container p-0 m-0">
-        <div class="row list-row m-0">
-            {% for list in lists %}
-            <div class="list-column col-4 col-lg-3 mb-4">
-                <div class="card list-card">
-                    <h3 class="list-title m-0 ps-2">
-                        {{list}}
-                    </h3>
-                    <ul class="list-items p-0 m-0 ms-2 mt-3">
-                        {% for listitem in list.listItems.all %}
+    <section id="content">
+        <div class="container-fluid main-container p-0">
+            <div class="sub-header lists-header">
+                <h2 class="page-header display-4 mx-3 ps-3">
+                    Your Lists
+                </h2>
+                <form action="{% url 'search_lists' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+                    {% csrf_token %}
+                    <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your lists...">
+                    <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="row content-grid p-3 m-0">
+                {% for list in lists %}
+                    <div class="card list-card col-3 p-0">
+                        <div class="list-title ps-2">
+                            {{list}}
+                        </div>
+                        <ul class="list-items p-0 m-0 ms-2 mt-2">
+                            {% for listitem in list.listItems.all %}
                             <li class="list-item mb-1 ps-2">{{listitem}}</li>
                         {% endfor %}
-                    </ul>
-                    <div class="list-actions pe-2">
-                        <a href="{% url 'list' list.id %}" class="list-link px-3 py-2 me-2">See list</a>
-                        <button data-bs-toggle="modal" data-bs-target="#delete-list-confirmation" class="delete-link list-link px-3 py-2 me-2">
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="delete-list-confirmation" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-title">Are you sure?</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="modal-body-text">
-                                Are you sure you want to delete "{{list}}" <span>permanently?</span>
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="list-link dismiss-link px-3 py-2 me-2" data-bs-dismiss="modal">No, Keep it</button>
-                            <a href="{% url 'delete_list' list.id %}" class="delete-link list-link px-3 py-2 me-2">Yes, Delete</a>
+                        </ul>
+                        <div class="list-actions">
+                            <button id="add-items" data-bs-toggle="modal" data-bs-target="#add_items_{{list.id}}" class="list-link ms-2">
+                                +
+                            </button>
+                            <a href="{% url 'list' list.id %}" class="list-link open-link px-3 py-2 me-2">See list</a>
+                            <button data-bs-toggle="modal" data-bs-target="#delete-list-{{list.id}}" class="list-link delete-link px-3 py-2 me-2">
+                                Delete
+                            </button>
                         </div>
                     </div>
+                    <div class="modal fade" id="delete-list-{{list.id}}" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-title">Are you sure?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="modal-body-text">
+                                        Are you sure you want to delete "{{list}}" <span>permanently?</span>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="list-link dismiss-link px-3 py-2 me-2" data-bs-dismiss="modal">No, Keep it</button>
+                                    <a href="{% url 'delete_list' list.id %}" class="list-link delete-link px-3 py-2 me-2">Yes, Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="add_items_{{list.id}}" tabindex="-2" aria-labelledby="modal-title" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-title">Add items to {{list}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'add_list_items' list.id %}" method="POST" id="add_list_items_form">
+                                        {% csrf_token %}    
+                                        <label for="id_listItems" class="add-list-label mb-2">Listitems:</label>
+                                        <textarea name="listItems" required="" id="id_listItems" placeholder="separate items by 'comma, space'"></textarea>
+                                          
+                                        <button type="submit" class="list-link save-link px-3 py-2 mt-2">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="card list-card new-list-card col-3 p-0">
+                    <a href="#newList" class="list-card-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
                 </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
+    </section>
 {% endblock %}
 
 {% block newList %}
     <div class="offcanvas offcanvas-end" id="newList" aria-labelledby="newList-label">
         <div class="offcanvas-header">
             <button type="button" class="btn-close sidebar-close m-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" class="sidebar-logo">
-            <h5 class="offcanvas-title" id="newList-label">New List</h5>
+            <div class="sidebar-brand">
+                <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" class="sidebar-logo">
+                <h5 class="offcanvas-title" id="newList-label">New List</h5>
+            </div>
         </div>
         <div class="offcanvas-body p-0">
             <form id="newListForm" action="/lists" enctype="multipart/form-data" class="p-3" method="post">
@@ -80,7 +107,7 @@
                 <label for="id_listItems">Listitems:</label>
                 <textarea name="listItems" cols="40" rows="10" id="id_listItems" class="mb-3" placeholder="separate items by 'comma, space'"></textarea>
                 
-                <button id="submit" type="submit" class="btn btn-lg">Save</button>            
+                <button id="add-items-submit" type="submit" class="btn btn-lg">Save</button>            
             </form>
         </div>
     </div>

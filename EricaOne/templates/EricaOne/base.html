@@ -8,142 +8,85 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <script src="https://kit.fontawesome.com/f8dced6eec.js" crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/f8dced6eec.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="icon" type="image/x-icon" href="{% static 'EricaOne/brand/logos/favicon-white.ico' %}">
     <link rel="stylesheet" href="{% static 'EricaOne/base.css' %}">
-
-    <!-- template styles -->
+    
     {% block styles %}{% endblock %}
 
     <title>Erica</title>
 </head>
+
+<div id="splash">
+    <div class="splash-logo">
+        <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" alt="" class="splash-logo-img">
+    </div>
+    <svg id="splash-loader" viewBox="0 0 400 160">
+        <text x="50%" y="50%" dy=".32rem" dx="3rem" text-anchor="middle" class="text-body">ERICA</text>
+    </svg>
+</div>
+
 <body>
-    <nav class="logo-nav navbar navbar-expand-md p-0">
-        <div class="container-fluid logo-nav-container justify-content-center">
-            <div class="dark-light-container">
-                <input type="checkbox" name="darkmode-lightmode" id="dark-light">
-            </div>
-            <a href="/"  class="nav-logo"><img src="{% static 'EricaOne/brand/logos/text-logo-black.png' %}" alt="" class="nav-logo-img"></a>
-            <a href="#sidebar" class="noti-toggle" data-bs-toggle="offcanvas" role="button" aria-controls="sidebar"><i class="fa-regular fa-bell nav-icon"></i></a>
+    <nav>
+        <div class="container-fluid logo-nav justify-content-center">
+            <a href="/"  class="nav-logo p-3">
+                <img src="{% static 'EricaOne/brand/logos/text-logo-black.png' %}" alt="" class="nav-logo-img">
+            </a>
+            <a href="#sidebar" class="nav-toggle noti-toggle" data-bs-toggle="offcanvas" role="button" aria-controls="sidebar"><i class="fa-regular fa-bell nav-icon"></i></a>
             {% block addDish %}{% endblock %}
             {% block addList %}{% endblock %}
         </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Reminders</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Checklists</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link">Home</a>
+            </li>
+            <li id="recipes-nav-item" class="nav-item">
+                <a id="recipes-nav-link" href="{% url 'recipes' %}" class="nav-link">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Calendar</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'lists' %}" class="nav-link">Lists</a>
+            </li>
+        </ul>
     </nav>
-    <nav class="scroll-nav navbar navbar-expand-md p-0">
-        <div class="container-fluid scroll-nav-container p-0">
-            <div id="main-nav" class="align-items-center">
-                <ul class="navbar-nav justify-content-evenly align-items-center">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-center">Reminders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-center">Checklists</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-center">Tasks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'home' %}" class="nav-link text-center">Home</a>
-                    </li>
-                    <li id="recipes-nav-item" class="nav-item">
-                        <a id="recipes-nav-link" href="{% url 'recipes' %}" class="nav-link text-center">Recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-center">Calendar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'lists' %}" class="nav-link text-center">Lists</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="content" name="content">
-        <div class="container-fluid">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </div>
-    <!-- offcanvas -->
-    <div class="offcanvas offcanvas-end" id="sidebar" aria-labelledby="sidebar-label">    
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close sidebar-close m-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" class="sidebar-logo">
-            <h5 class="offcanvas-title" id="sidebar-label">Notifications</h5>
-        </div>
-        <div class="offcanvas-body p-0">
-            <div class="list-group noti-list">
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-                <div class="list-group-item notification">
-                    <h5 class="noti-title">Tasks</h5>
-                    <p class="noti-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, suscipit.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% block newDish %}
+
+    {% block content %}
+        {% block sub-header %}
+
+        {% endblock %}
     {% endblock %}
-    {% block newList %}
-    {% endblock %}
+
+    {% block newDish %}{% endblock %}
+    {% block newList %}{% endblock %}
+
     <script>
-        var page_title = "{{ page_title }}";
-        const elements = document.querySelectorAll("*");
+        const page_title = "{{ page_title }}";
+        const elements = document.querySelectorAll(".nav-link");
+
         elements.forEach(element => {
-        if (element.textContent == (page_title)) {
-            element.style.color = '#7e3cff';
-        }
-    });
+            if (element.textContent == (page_title)) {
+                element.style.color = '#7e3cff';
+            }
+        });
     </script>
     <script src="{% static 'EricaOne/base.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

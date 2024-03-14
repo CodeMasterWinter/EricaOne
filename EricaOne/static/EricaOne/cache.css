@@ -1,0 +1,270 @@
+@keyframes riseIn {
+    from {
+        transform: translateY(20px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.container-fluid {
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+.lists-header {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+}
+
+.page-header {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2.5rem;
+    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
+    border-left: 10px solid #7e3cff;
+}
+
+.searchbar {
+    width: 35%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
+}
+
+#id_searchbar {
+    width: 98%;
+    height: 6vh;
+    padding: 1vw;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 6vh;
+}
+
+.searchbar-icon {
+    right: 0;
+    width: 4vw;
+    height: 6vh;
+    border: none;
+    display: flex;
+    color: #ffffff;
+    position: absolute;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+    border-top-right-radius: 6vh;
+    border-bottom-right-radius: 6vh;
+    background-color: #7e3cff;
+    transition: all 0.3s ease;
+}
+
+.searchbar-icon:hover {
+    background-color: #6b21ff;
+}
+
+.list-column {
+    height: 35vh;
+}
+
+.list-card {
+    z-index: 5;
+    height: 100%;
+    border: none;
+    border-radius: 1vh;
+    transition: 0.3s ease;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.list-title {
+    height: 20%;
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    align-items: center;
+    transition: 0.3s ease;
+    border-top-left-radius: 1vh;
+    border-top-right-radius: 1vh;
+    background-color: #7e3cff;
+}
+
+.list-items {
+    height: 50%;
+    list-style: none;
+    overflow: hidden;
+    mask: linear-gradient(#ffffff 80%, transparent);
+}
+
+.list-item {
+    font-weight: 600;
+    border-left: 5px solid #000000;
+}
+
+.list-actions {
+    opacity: 0;
+    height: 30%;
+    display: flex;
+    position: relative;
+    visibility: hidden;
+    align-items: center;
+    transition: 0.3s ease;
+    justify-content: flex-end;
+}
+
+#add-items {
+    left: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    display: grid;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    place-content: center;
+    transition: background-color .4s ease;
+    background-color: #000000;
+}
+
+#add-items:hover {
+    background-color: #7e3cff;
+}
+
+.list-link {
+    font-weight: 700;
+    background-color: #7e3cff;
+    text-decoration: none;
+    border-radius: 5vh;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.delete-link {
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #000000;
+}
+
+.dismiss-link {
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.list-card:hover .list-actions{
+    opacity: 1;
+    visibility: visible;
+    animation: riseIn 0.3s ease, fadeIn 0.5s ease;
+}
+
+.list-link:hover{
+    color: #7e3cff;
+    background-color: #000000;
+}
+
+.delete-link:hover {
+    color: #ffffff;
+    background-color: red;
+}
+
+.list-link:active{
+    background-color: #6b21ff;
+}
+
+.newList-toggle {
+    right: 0;
+    border: none;
+    margin-right: 8vw;
+    background: none;
+    font-size: 1.5em;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.newList-toggle:hover {
+    transform: rotate(90deg);
+}
+
+#newListForm {
+    width: 100%;
+}
+
+#newListForm label{
+    display: block;
+    font-weight: 700;
+}
+
+#newListForm input{
+    width: 100%;
+    height: 6vh;
+    border: none;
+    outline: none;
+    padding: 1vw;
+    font-weight: 700;
+    color: #7e3cff;
+    border-radius: 1vh;
+    background-color: #0000001a;
+}
+
+#newListForm textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 1vh;
+    font-weight: 700;
+    color: #7e3cff;
+    border-radius: 1vh;
+    background-color: #0000001a;
+}
+
+#submit {
+    width: 100%;
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+#submit:hover {
+    background-color: #7e3cff;
+}
+
+.modal-header {
+    background-color: #7e3cff;
+}
+
+#modal-title {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.modal-body-text {
+    font-weight: 700;
+}
+
+.modal-body-text span{
+    font-weight: 700;
+    color: #7e3cff;
+}

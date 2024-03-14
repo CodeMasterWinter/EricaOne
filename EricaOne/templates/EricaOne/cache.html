@@ -1,60 +1,111 @@
-{% csrf_token %}             
-                <label for="id_name">Dish Name:</label>
-                <input type="text" name="name" maxlength="255" required="" id="id_name" class="mb-3">
-                <div id="durationField">
-                    <div class="durationFieldblock me-1">
-                        <label for="id_prep_hours">Hours:</label>
-                        <input type="number" name="prep_hours" required="" id="id_prep_hours">
+{% extends 'EricaOne/base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'EricaOne/lists.css' %}">
+{% endblock %}
+{% block addList %}
+    <a href="#newList" class="newList-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
+{% endblock%}
+
+{% block content %}
+    <div class="lists-header">
+        <h2 class="page-header display-4 mx-3 ps-3">
+            Your Lists
+        </h2>
+        <form action="{% url 'search_recipes' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+            {% csrf_token %}
+            <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
+            <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+    <div class="container-fluid list-container p-0 m-0">
+        <div class="row list-row m-0 mt-3">
+            {% for list in lists %}
+            <div class="list-column col-4 col-lg-3">
+                <div class="card list-card">
+                    <div class="list-title m-0 ps-2">
+                        {{list}}
                     </div>
-                    <div class="durationFieldblock ms-1">
-                        <label for="id_prep_minutes">Minutes:</label>
-                        <input type="number" name="prep_minutes" required="" id="id_prep_minutes" class="mb-3">
-                    </div>
-                </div>
-          
-                <label for="id_servings">Servings:</label>
-                <input type="number" name="servings" required="" id="id_servings" class="mb-3">
-          
-                <label for="id_aliases">Aliases:</label>
-                <textarea name="aliases" cols="40" rows="5" id="id_aliases" class="mb-3">null</textarea>
-                
-                <div id="id_categories">
-                    <div>
-                        <label for="id_categories_0">
-                            <input type="checkbox" name="categories" value="1" id="id_categories_0">
-                            Savoury
-                        </label>
-                    </div>
-                    <div>
-                        <label for="id_categories_1">
-                            <input type="checkbox" name="categories" value="2" id="id_categories_1">
-                            Sweet
-                        </label>
-                    </div>
-                    <div>
-                        <label for="id_categories_2">
-                            <input type="checkbox" name="categories" value="3" id="id_categories_2">
-                            Baked
-                        </label>
-                    </div>
-                    <div>
-                        <label for="id_categories_3">
-                            <input type="checkbox" name="categories" value="4" id="id_categories_3">
-                            Deep-Fried
-                        </label>
-                    </div>
-                    <div>
-                        <label for="id_categories_4">
-                            <input type="checkbox" name="categories" value="5" id="id_categories_4">
-                            Fried
-                        </label>
-                    </div>
-                    <div>
-                        <label for="id_categories_5">
-                            <input type="checkbox" name="categories" value="6" id="id_categories_5">
-                            Sauteed
-                        </label>
+                    <ul class="list-items p-0 m-0 ms-2 mt-3">
+                        {% for listitem in list.listItems.all %}
+                            <li class="list-item mb-1 ps-2">{{listitem}}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="list-actions p-2">
+                        <a href="{% url 'list' list.id %}" class="list-link px-3 py-2 me-2">See list</a>
+                        <button data-bs-toggle="modal" data-bs-target="#delete-list-{{list.id}}" class="delete-link list-link px-3 py-2 me-2">
+                            Delete
+                        </button>
+                        <button id="add-items" data-bs-toggle="modal" data-bs-target="#add_items_{{list.id}}" class="ms-2">
+                            +
+                        </button>
                     </div>
                 </div>
+            </div>
+            <div class="modal fade" id="delete-list-{{list.id}}" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Are you sure?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-body-text">
+                                Are you sure you want to delete "{{list}}" <span>permanently?</span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="list-link dismiss-link px-3 py-2 me-2" data-bs-dismiss="modal">No, Keep it</button>
+                            <a href="{% url 'delete_list' list.id %}" class="delete-link list-link px-3 py-2 me-2">Yes, Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="add_items_{{list.id}}" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Add items to {{list}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'add_list_items' list.id %}" method="POST" id="add_list_items_form">
+                                {% csrf_token %}    
+                                <label for="id_listItems">Listitems:</label>
+                                <textarea name="listItems" cols="40" rows="8" required="" id="id_listItems"></textarea>
+                                  
+                                <button type="submit" class="list-link save-link px-3 py-2 me-2">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block newList %}
+    <div class="offcanvas offcanvas-end" id="newList" aria-labelledby="newList-label">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close sidebar-close m-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="sidebar-brand">
+                <img src="{% static 'EricaOne/brand/logos/logo-black-slim.png' %}" class="sidebar-logo">
+                <h5 class="offcanvas-title" id="newList-label">New List</h5>
+            </div>
+        </div>
+        <div class="offcanvas-body p-0">
+            <form id="newListForm" action="/lists" enctype="multipart/form-data" class="p-3" method="post">
+                {% csrf_token %}
+                <label for="id_title">Title:</label>  
+                <input type="text" name="title" maxlength="255" required="" id="id_title" class="mb-3">
                 
-                <button type="submit" id="submit" class="btn btn-lg">Add Dish</button>
+                <label for="id_listItems">Listitems:</label>
+                <textarea name="listItems" cols="40" rows="10" id="id_listItems" class="mb-3" placeholder="separate items by 'comma, space'"></textarea>
+                
+                <button id="add-items-submit" type="submit" class="btn btn-lg">Save</button>            
+            </form>
+        </div>
+    </div>
+{% endblock %}

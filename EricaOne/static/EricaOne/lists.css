@@ -1,90 +1,25 @@
-@keyframes riseIn {
-    from {
-        transform: translateY(20px);
-    }
-
-    to {
-        transform: translateY(0px);
-    }
+.newList-toggle {
+    margin-right: 7rem;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.container-fluid {
-    padding: 0;
+.newList-toggle:hover {
+    transform: rotate(90deg);
 }
 
 .lists-header {
-    height: 25vh;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: #000000;
 }
 
-.page-header {
-    color: #ffffff;
-    font-weight: 700;
-    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
-    border-left: 10px solid #7e3cff;
-}
-
-.searchbar {
-    width: 35%;
-    display: flex;
-    position: relative;
-    align-items: center;
-    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
-}
-
-#id_searchbar {
-    width: 98%;
-    height: 6vh;
-    padding: 1vw;
-    outline: none;
-    border: none;
-    font-weight: 700;
-    border-radius: 6vh;
-}
-
-.searchbar-icon {
-    right: 0;
-    width: 4vw;
-    height: 6vh;
-    border: none;
-    display: flex;
-    color: #ffffff;
-    position: absolute;
-    align-items: center;
-    text-decoration: none;
-    justify-content: center;
-    border-top-right-radius: 6vh;
-    border-bottom-right-radius: 6vh;
-    background-color: #7e3cff;
-    transition: all 0.3s ease;
-}
-
-.searchbar-icon:hover {
-    background-color: #6b21ff;
-}
-
-.list-column {
-    height: 25vh;
+.content-grid {
+    gap: 1rem;
+    min-height: 79%;
+    background-color: #0000001e;
 }
 
 .list-card {
-    z-index: 5;
-    height: 100%;
+    height: 16rem;
     border: none;
-    border-radius: 1vh;
+    border-radius: .5rem;
     transition: 0.3s ease;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
@@ -92,91 +27,181 @@
 .list-title {
     height: 20%;
     display: flex;
+    font-size: 1.2rem;
     font-weight: 700;
     color: #ffffff;
     align-items: center;
     transition: 0.3s ease;
-    border-top-left-radius: 1vh;
-    border-top-right-radius: 1vh;
-    background-color: #7e3cff;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    background: linear-gradient(to right, #7e3cff, #000000);
 }
 
 .list-items {
-    list-style: none;
     height: 55%;
+    list-style: none;
+    overflow: hidden;
+    mask: linear-gradient(#ffffff 80%, transparent);
 }
 
 .list-item {
     font-weight: 600;
-    border-left: 5px solid #000000;
+    position: relative;
+    /*border-left: 5px solid #000000;*/
+}
+
+.list-item::after {
+    left: .2rem;
+    bottom: -.1rem;
+    width: 100%;
+    content: '';
+    height: 2px;
+    position: absolute;
+    background: linear-gradient(to right, #000000, transparent);
 }
 
 .list-actions {
-    opacity: 0;
-    width: 100%;
     height: 25%;
     display: flex;
-    visibility: hidden;
+    position: relative;
     align-items: center;
-    transition: 0.3s ease;
-    justify-content: flex-end;
+    justify-content: end;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .list-link {
     font-weight: 700;
-    background-color: #000000;
-    text-decoration: none;
-    border-radius: 5vh;
-    transition: all 0.3s ease;
     color: #ffffff;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform .2s ease;
+}
+
+.list-link:hover {
+    transform: translate3d(0, -.4rem, 0);
+}
+
+.open-link {
+    background-color: #7e3cff;
+}
+
+#add-items {
+    left: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #000000;
+}
+
+.open-link:hover {
+    background-color: #000000;
 }
 
 .delete-link {
     border: none;
     cursor: pointer;
-    color: #ffffff;
+    background-color: #000000;
+}
+
+.delete-link:hover {
+    background-color: rgb(170, 1, 1);
+}
+
+.new-list-card {
+    transition: background-color 0.3s ease
+}
+
+.list-card-toggle {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    font-size: 3rem;
+    color: #000000;
     text-decoration: none;
-    background-color: red;
+    place-content: center;
+}
+
+.new-list-card:hover{
+    background-color: #7d3cff71;
+}
+
+.save-link {
+    border: none;
+    background-color: #7e3cff;
+}
+
+.save-link:hover {
+    background-color: #000000;
+}
+
+.modal-header {
+    background-color: #000000;
+}
+
+.modal-title {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.modal-body-text {
+    font-weight: 600;
+}
+
+.add-list-label {
+    font-weight: 700;
+}
+
+#id_listItems {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    outline: none;
+    font-weight: 600;
+    color: #7e3cff;
+    border-radius: .5rem;
+    border: 2px solid #000000;
 }
 
 .dismiss-link {
     border: none;
     cursor: pointer;
-    color: #ffffff;
     text-decoration: none;
-}
-
-.list-card:hover .list-actions{
-    opacity: 1;
-    visibility: visible;
-    animation: riseIn 0.3s ease, fadeIn 0.5s ease;
-}
-
-.list-link:hover{
-    color: #ffffff;
     background-color: #7e3cff;
+    transition: background-color 0.3s ease;
 }
 
-.delete-link:hover {
+.dismiss-link:hover {
     background-color: #000000;
 }
 
-.list-link:active{
-    background-color: #6b21ff;
+.btn-close {
+    background-color: #ffffff;
 }
 
-.newList-toggle {
-    right: 0;
-    border: none;
-    margin-right: 8vw;
-    background: none;
-    font-size: 1.5em;
+.offcanvas-header {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.sidebar-close {
+    left: 0;
     position: absolute;
-    transition: all 0.3s ease;
 }
 
-.newList-toggle:hover {
-    transform: rotate(90deg);
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sidebar-logo {
+    height: 2rem;
 }
 
 #newListForm {
@@ -212,24 +237,15 @@
     background-color: #0000001a;
 }
 
-#submit {
+#add-items-submit {
     width: 100%;
     border: none;
     color: #ffffff;
     font-weight: 700;
     background-color: #000000;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-#submit:hover {
+#add-items-submit:hover {
     background-color: #7e3cff;
-}
-
-.modal-header {
-    background-color: #7e3cff;
-}
-
-#modal-title {
-    color: #ffffff;
-    font-weight: 700;
 }

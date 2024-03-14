@@ -19,3 +19,6 @@ class DateTime:
 
     def minute(self):
         return self.now.strftime("%M")
+
+    def month(self):
+        return self.now.strftime("%B")
