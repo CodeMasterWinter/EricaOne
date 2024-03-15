@@ -23,23 +23,25 @@
             </div>
             <div class="row content-grid p-3 m-0">
                 {% for list in lists %}
-                    <div class="card list-card col-3 p-0">
-                        <div class="list-title ps-2">
-                            {{list}}
-                        </div>
-                        <ul class="list-items p-0 m-0 ms-2 mt-2">
-                            {% for listitem in list.listItems.all %}
-                            <li class="list-item mb-1 ps-2">{{listitem}}</li>
-                        {% endfor %}
-                        </ul>
-                        <div class="list-actions">
-                            <button id="add-items" data-bs-toggle="modal" data-bs-target="#add_items_{{list.id}}" class="list-link ms-2">
-                                +
-                            </button>
-                            <a href="{% url 'list' list.id %}" class="list-link open-link px-3 py-2 me-2">See list</a>
-                            <button data-bs-toggle="modal" data-bs-target="#delete-list-{{list.id}}" class="list-link delete-link px-3 py-2 me-2">
-                                Delete
-                            </button>
+                    <div class="list-column col-3 px-2">
+                        <div class="card list-card p-0">
+                            <div class="list-title ps-2">
+                                {{list}}
+                            </div>
+                            <ul class="list-items p-0 m-0 ms-2 mt-2">
+                                {% for listitem in list.listItems.all %}
+                                <li class="list-item mb-1 ps-2">{{listitem}}</li>
+                            {% endfor %}
+                            </ul>
+                            <div class="list-actions">
+                                <button id="add-items" data-bs-toggle="modal" data-bs-target="#add_items_{{list.id}}" class="list-link ms-2">
+                                    +
+                                </button>
+                                <a href="{% url 'list' list.id %}" class="list-link open-link px-3 py-2 me-2">See list</a>
+                                <button data-bs-toggle="modal" data-bs-target="#delete-list-{{list.id}}" class="list-link delete-link px-3 py-2 me-2">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal fade" id="delete-list-{{list.id}}" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -81,8 +83,10 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div class="card list-card new-list-card col-3 p-0">
-                    <a href="#newList" class="list-card-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
+                <div class="list-column col-3 px-2">
+                    <div class="card list-card new-list-card p-0">
+                        <a href="#newList" class="list-card-toggle" data-bs-toggle="offcanvas" data-bs-target="#newList" role="button" aria-controls="newList"><i class="fa-solid fa-plus nav-icon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

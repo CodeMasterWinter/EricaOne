@@ -1,224 +1,160 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Montserrat';
+.newDish-toggle {
+    margin-right: 7rem;
 }
 
-@keyframes riseIn {
-    from {
-        transform: translateY(-20px);
-    }
-
-    to {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes textSlideIn {
-    from {
-        transform: translateY(40px);
-    }
-
-    to {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.container-fluid {
-    padding: 0;
+.newDish-toggle:hover {
+    transform: rotate(90deg);
 }
 
 .recipes-header {
-    height: 25vh;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: #000000;
 }
 
-.page-header {
-    color: #ffffff;
-    font-weight: 700;
-    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
-    border-left: 10px solid #7e3cff;
-}
-
-.searchbar {
-    width: 35%;
-    display: flex;
-    position: relative;
-    align-items: center;
-    animation: riseIn 1s ease-out, fadeIn 1s ease-out;
-}
-
-#id_searchbar {
-    width: 98%;
-    height: 6vh;
-    padding: 1vw;
-    outline: none;
-    border: none;
-    font-weight: 700;
-    border-radius: 6vh;
-}
-
-.searchbar-icon {
-    right: 0;
-    width: 4vw;
-    height: 6vh;
-    border: none;
-    display: flex;
-    color: #ffffff;
-    position: absolute;
-    align-items: center;
-    text-decoration: none;
-    justify-content: center;
-    border-top-right-radius: 6vh;
-    border-bottom-right-radius: 6vh;
-    background-color: #7e3cff;
-    transition: all 0.3s ease;
-}
-
-.searchbar-icon:hover {
-    background-color: #6b21ff;
-}
-
-#grid-container {
-    height: 100%;
+.content-grid {
+    display: grid;
+    row-gap: 1rem;
 }
 
 .dish-row {
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    animation: fadeIn 2s ease-in;
     background-color: #0000000c;
 }
 
-.search-dish-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 2s ease-in;
-}
-
-.search-row {
-    width: 100%;
-    height: 50vh;
+.row-label {
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-left: 10px solid #7e3cff;
 }
 
 .dish-column {
-    height: 100%;
+    height: 16rem;
 }
 
 .dish-card {
     height: 100%;
     border: none;
+    display: flex;
     cursor: pointer;
+    overflow: hidden;
     position: relative;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: .5rem;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
-.dish-overlay {
-    height: 0;
-    bottom: 0;
-    z-index: 10;
-    width: 100%;
+.dish-card::before {
+    inset: 0;
+    z-index: -1;
+    content: '';
     position: absolute;
-    transition: all 0.3s ease;
-    background-color: #7d3cff49;
+    transition: opacity .2s ease;
+    background: linear-gradient(to bottom, transparent, #000000);
 }
 
-.dish-card:hover .dish-overlay {
-    height: 100%;
+.dish-card:hover::before{
+    opacity: 0;
 }
 
 .dish-image {
-    width: 100%;
-    height: 55%;
-}
-
-.dish-img{
+    top: 0;
+    left: 0;
+    z-index: -2;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute;
+    transform: scale(1.2);
+    transition: transform .2s ease;
+}
+
+.dish-card:hover .dish-image{
+    transform: scale(1);
 }
 
 .dish-info {
     width: 100%;
-    height: 45%;
-    text-overflow: ellipsis;
+    height: 40%;
+    position: relative;
+    align-self: flex-end;
+    transition: transform .2s ease;
+}
+
+.dish-card:hover .dish-info{
+    transform: translate3d(0, 10rem, 0);
+}
+
+.dish-info::after {
+    top: -1rem;
+    width: 90%;
+    left: 50%;
+    height: 4px;
+    content: '';
+    position: absolute;
+    border-radius: 1vh;
+    background-color: #7e3cff;
+    transform: translateX(-50%);
+}
+
+.dish-info p {
     overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.dish-title {
-    font-weight: 700;
+.card-title {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
-.dish-prep, .prep-icon{
+.dish-prep {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.dish-servings {
+    font-weight: 600;
     color: #7e3cff;
-    font-weight: 700;
-}
-
-.dish-servings{
-    font-weight: 600;;
-    opacity: 0.7;
 }
 
 .dish-link {
-    top: 55%;
-    left: 50%;
-    opacity: 0;
-    z-index: 10;
-    visibility: hidden;
-    font-weight: 700;
-    background-color: #000000;
-    text-decoration: none;
-    border-radius: 5vh;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    transition: all 0.3s ease;
+    top: 0;
+    left: 0;
+    font-weight: 600;
     color: #ffffff;
+    position: absolute;
+    border-radius: 2rem;
+    text-decoration: none;
+    transform: translate3d(0, -10rem, 0);
+    background-color: #7e3cff;
+    transition: background-color .2s ease, transform .2s ease-in-out;
 }
 
 .dish-card:hover .dish-link {
-    opacity: 1;
-    visibility: visible;
+    transform: translate3d(0, 0, 0);
 }
 
-.dish-link:hover{
+.dish-link:hover {
+    background-color: #000000;
+}
+
+.dish-link {
+    top: 0;
+    left: 0;
+    font-weight: 600;
     color: #ffffff;
-    background-color: #7e3cff;
-}
-
-.dish-link:active{
-    background-color: #7e3cff;
-}
-
-.newDish-toggle {
-    right: 0;
-    border: none;
-    margin-right: 8vw;
-    background: none;
-    font-size: 1.5em;
     position: absolute;
-    transition: all 0.3s ease;
+    border-radius: 2rem;
+    text-decoration: none;
+    transform: translate3d(0, -10rem, 0);
+    background-color: #7e3cff;
+    transition: background-color .2s ease, transform .2s ease-in-out;
 }
 
-.newDish-toggle:hover {
-    transform: rotate(90deg);
+.dish-card:hover .dish-link {
+    transform: translate3d(0, 0, 0);
+}
+
+.dish-link:hover {
+    background-color: #000000;
 }
 
 #newDishForm {
@@ -291,47 +227,10 @@
     font-weight: 700;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .newDish-toggle {
-        margin-right: 12vw;
-    }
 
-    #newDishForm label{
-        font-size: 1.5em;
-    }
+@media (min-width: 1650px) {
 
-    #newDishForm input{
-        font-size: 1.5em;
-    }
-
-    #submit:active {
-        background-color: #7e3cff;
-    }
-
-    .recipes-header {
-        height: 15vh;
-    }
-
-    .searchbar {
-        width: 40%;
-    }
-    
-    #id_searchbar {
-        width: 100%;
-        height: 4vh;
-        border-radius: 4vh;
-    }
-    
-    .searchbar-icon {
-        width: 6vw;
-        height: 4vh;
-    }
-
-    .dish-row {
-        height: 30vh;
-    }
-
-    #newDish {
-        width: 60%;
+    .dish-column {
+        height: 18rem;
     }
 }

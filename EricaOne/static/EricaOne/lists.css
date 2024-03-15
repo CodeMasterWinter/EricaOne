@@ -10,14 +10,21 @@
     justify-content: space-between;
 }
 
+.main-container {
+    height: 95%;
+}
+
 .content-grid {
-    gap: 1rem;
     min-height: 79%;
     background-color: #0000001e;
 }
 
-.list-card {
+.list-column {
     height: 16rem;
+}
+
+.list-card {
+    height: 100%;
     border: none;
     border-radius: .5rem;
     transition: 0.3s ease;

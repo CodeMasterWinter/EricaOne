@@ -5,57 +5,63 @@
     <link rel="stylesheet" href="{% static 'EricaOne/recipes.css' %}">
 {% endblock %}
 {% block addDish %}
-    <a href="#newDish" class="newDish-toggle" data-bs-toggle="offcanvas" data-bs-target="#newDish" role="button" aria-controls="newDish"><i class="fa-solid fa-plus nav-icon"></i></a>
+    <a href="#newDish" class="nav-toggle newDish-toggle" data-bs-toggle="offcanvas" data-bs-target="#newDish" role="button" aria-controls="newDish"><i class="fa-solid fa-plus nav-icon"></i></a>
 {% endblock%}
 
 {% block content %}
-    <div class="recipes-header mb-5">
-        <h2 class="page-header display-4 mx-3 ps-3">
-            Your Recipes
-        </h2>
-        <form action="{% url 'search_recipes' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
-            {% csrf_token %}
-            <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
-            <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-    </div>
-    {% for result in results %}
-    <div class="container-fluid dish-row-container">
-        <h4 class="category-label mx-3 my-2">{{ result.category }}</h4>
-        <div class="dish-row p-1 mb-5">
-            {% for dish in result.dishes %}
-                <div class="dish-column col-4 col-lg-3 px-1">
-                    <div class="card dish-card">
-                        <div class="dish-image">
-                            {% if dish.image %}
-                                <img src="{{dish.image.url}}" class="dish-img">
-                            {% else %}
-                                <img src="{% static 'EricaOne/images/brand/no-image.png' %}" class="dish-img">    
-                            {% endif %}
-                        </div>
-                        <div class="dish-info p-3">
-                            <h4 class="dish-title mb-3">{{dish.name}}</h4>
-                            <p class="dish-prep m-0">
-                                <i class="fa-solid fa-clock prep-icon pe-1"></i>
-                                {% if dish.prep_hours != 0 %}
-                                    {{dish.prep_hours}}hr 
-                                {%endif%} 
-                                {{dish.prep_minutes}} min
-                            </p>
-                            <p class="dish-servings m-0">
-                                <i class="fa-solid fa-utensils pe-1"></i>
-                                {{dish.servings}} servings
-                            </p>
-                        </div>
-                        <div class="dish-overlay">
-                        </div>
-                        <a href="{% url 'recipe' dish.id %}" class="dish-link px-5 py-3">See dish</a>
+    <section id="content">
+        <div class="container-fluid main-container p-0">
+            <div class="sub-header recipes-header">
+                <h2 class="page-header display-4 mx-3 ps-3">
+                    Your Recipes
+                </h2>
+                <form action="{% url 'search_recipes' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+                    {% csrf_token %}
+                    <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
+                    <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="content-grid p-3 m-0">
+                {% for result in results %}
+                    <label class="row-label ps-2 my-2">{{ result.category }}</label>
+                    <div class="row dish-row">
+                        {% for dish in result.dishes %}
+                            <div class="dish-column col-3 px-2">
+                                <div class="dish-card p-0">
+                                    {% if dish.image %}
+                                        <img src="{{dish.image.url}}"  class="dish-image">
+                                    {% else %}
+                                        <img src="{% static 'EricaOne/brand/no-image.png' %}" class="dish-image">    
+                                    {% endif %}
+                                    <div class="dish-info my-2 px-3">
+                                        <p class="card-title mb-2">{{ dish.name }}</p>
+                                        <p class="dish-prep mb-1">
+                                            <i class="fa-solid fa-clock me-1"></i>
+                                            <span>
+                                                {% if dish.prep_hours != 0 %}
+                                                    {{dish.prep_hours}} hours
+                                                {% endif %}
+                                            </span>
+                                            <span>
+                                                {% if dish.prep_minutes != 0 %}
+                                                    {{dish.prep_minutes}} minutes
+                                                {% endif %}
+                                            </span>
+                                        </p>
+                                        <p class="dish-servings">
+                                            <i class="fa-solid fa-utensils me-1"></i>
+                                            {{dish.servings}} Servings
+                                        </p>
+                                    </div>
+                                    <a href="{% url 'recipe' dish.id %}" class="dish-link px-3 py-2 m-2">See dish</a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-{% endfor %}
+    </section>
 {% endblock %}
 
 {% block newDish %}
