@@ -25,6 +25,10 @@
     border-left: 10px solid #7e3cff;
 }
 
+.row-label.dark-mode {
+    color: #ffffff
+}
+
 .dish-column {
     height: 16rem;
 }
