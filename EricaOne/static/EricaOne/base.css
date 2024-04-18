@@ -198,6 +198,8 @@ body.dark-mode {
 }
 
 #content {
+    display: flex;
+    flex-direction: column;
     min-height: calc(100dvh - 8rem);
 }
 
@@ -252,10 +254,6 @@ body.dark-mode {
 
 .searchbar-icon:hover {
     background-color: #6b21ff;
-}
-
-.main-container {
-    height: 100%;
 }
 
 @keyframes fall-in {

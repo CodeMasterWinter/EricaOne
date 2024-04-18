@@ -15,9 +15,10 @@
                 <h2 class="page-header display-4 mx-3 ps-3">
                     Your Recipes
                 </h2>
-                <form action="{% url 'search_recipes' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+                <form action="{% url 'search' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
                     {% csrf_token %}
                     <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
+                    <input type="hidden" name="search_model" value="dish">
                     <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

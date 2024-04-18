@@ -76,11 +76,17 @@ def recipes(request):
     return render(request, 'EricaOne/recipes.html', context)
 
 
-def search_recipes(request):
+def search(request):
 
     if request.method == "POST":
         searchbar = request.POST["searchbar"]
-        results = Dish.objects.filter(name__contains=searchbar)
+
+        search_model = request.POST["search_model"]
+
+        if search_model == "dish":
+            results = Dish.objects.filter(name__contains=searchbar)
+        elif search_model == "list":
+            results = List.objects.filter(title__contains=searchbar)
 
         context = {
             'searchbar': searchbar,
@@ -167,25 +173,6 @@ def lists(request):
     }
 
     return render(request, 'EricaOne/lists.html', context)
-
-
-def search_lists(request):
-
-    if request.method == "POST":
-        searchbar = request.POST["searchbar"]
-        results = Dish.objects.filter(name__contains=searchbar)
-
-        context = {
-            'searchbar': searchbar,
-            'results': results,
-        }
-
-    else:
-        context = {
-
-        }
-
-    return render(request, 'EricaOne/search.html', context)
 
 
 def add_list_items(request, list_id):

@@ -15,9 +15,10 @@
                 <h2 class="page-header display-4 mx-3 ps-3">
                     Your Lists
                 </h2>
-                <form action="{% url 'search_lists' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+                <form action="{% url 'search' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
                     {% csrf_token %}
                     <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your lists...">
+                    <input type="hidden" name="search_model" value="list">
                     <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
@@ -30,8 +31,8 @@
                             </div>
                             <ul class="list-items p-0 m-0 ms-2 mt-2">
                                 {% for listitem in list.listItems.all %}
-                                <li class="list-item mb-1 ps-2">{{listitem}}</li>
-                            {% endfor %}
+                                    <li class="list-item mb-1 ps-2">{{listitem}}</li>
+                                {% endfor %}
                             </ul>
                             <div class="list-actions">
                                 <button id="add-items" data-bs-toggle="modal" data-bs-target="#add_items_{{list.id}}" class="list-link ms-2">
