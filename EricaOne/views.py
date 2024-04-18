@@ -84,12 +84,20 @@ def search(request):
         search_model = request.POST["search_model"]
 
         if search_model == "dish":
-            results = Dish.objects.filter(name__contains=searchbar)
+            if not searchbar == "":
+                results = Dish.objects.filter(name__contains=searchbar)
+            else:
+                results = []
+                
         elif search_model == "list":
-            results = List.objects.filter(title__contains=searchbar)
+            if not searchbar == "":
+                results = List.objects.filter(title__contains=searchbar)
+            else:
+                results = []
 
         context = {
             'searchbar': searchbar,
+            'search_model': search_model,
             'results': results,
         }
 

@@ -10,11 +10,6 @@
     justify-content: space-between;
 }
 
-.content-grid {
-    display: grid;
-    row-gap: 1rem;
-}
-
 .dish-row {
     background-color: #0000000c;
 }

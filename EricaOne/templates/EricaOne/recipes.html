@@ -24,11 +24,11 @@
             </div>
             <div class="content-grid p-3 m-0">
                 {% for result in results %}
-                    <label class="row-label ps-2 my-2">{{ result.category }}</label>
+                    <label class="row-label ps-2 my-4">{{ result.category }}</label>
                     <div class="row dish-row">
                         {% for dish in result.dishes %}
                             <div class="dish-column col-3 px-2">
-                                <div class="dish-card p-0">
+                                <div class="dish-card p-2">
                                     {% if dish.image %}
                                         <img src="{{dish.image.url}}"  class="dish-image">
                                     {% else %}

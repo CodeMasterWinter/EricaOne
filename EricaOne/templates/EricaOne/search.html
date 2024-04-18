@@ -2,24 +2,131 @@
 {% load static %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'EricaOne/search.css' %}">
+    <link rel="stylesheet" href="{% static 'EricaOne/lists.css' %}">
     <link rel="stylesheet" href="{% static 'EricaOne/recipes.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div id="content">
-        <div class="sub-header search-header mb-5">
-            <h2 class="page-header display-4 mx-3 ps-3">
-                {% if searchbar %}
-                    Search Results for "{{searchbar}}"
-                {% else %}
-                    You didn't enter a search term &#x1F644
-                {% endif %}
-            </h2>
-            <form action="{% url 'search' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
-                {% csrf_token %}
-                <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
-                <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+    <section id="content">
+        <div class="container-fluid main-container p-0">
+            <div class="sub-header search-header">
+                <h2 class="page-header display-4 mx-3 ps-3">
+                    {% if searchbar %}
+                        Search Results for "{{searchbar}}"
+                    {% else %}
+                        You didn't enter a search term &#x1F644
+                    {% endif %}
+                </h2>
+                <form action="{% url 'search' %}" method="POST" class="searchbar mx-5" id="searchbar-form">
+                    {% csrf_token %}
+                    {% if search_model == 'list' %}
+                        <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your lists...">
+                    {% elif search_model == 'dish' %}
+                        <input type="search" name="searchbar" id="id_searchbar" placeholder="Find your recipes...">
+                    {% endif %}
+                    <input type="hidden" name="search_model" value="{{search_model}}">
+                    <button class="searchbar-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="row content-grid p-3 m-0">
+                {% if search_model == 'list' %}
+                    {% for list in results %}
+                        <div class="list-column col-3 p-2">
+                            <div class="card list-card p-0">
+                                <div class="list-title ps-2">
+                                    {{list}}
+                                </div>
+                                <ul class="list-items p-0 m-0 ms-2 mt-2">
+                                    {% for listitem in list.listItems.all %}
+                                        <li class="list-item mb-1 ps-2">{{listitem}}</li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="list-actions">
+                                    <button id="add-items" data-bs-toggle="modal" data-bs-target="#add_items_{{list.id}}" class="list-link ms-2">
+                                        +
+                                    </button>
+                                    <a href="{% url 'list' list.id %}" class="list-link open-link px-3 py-2 me-2">See list</a>
+                                    <button data-bs-toggle="modal" data-bs-target="#delete-list-{{list.id}}" class="list-link delete-link px-3 py-2 me-2">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="delete-list-{{list.id}}" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Are you sure?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="modal-body-text">
+                                            Are you sure you want to delete "{{list}}" <span>permanently?</span>
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="list-link dismiss-link px-3 py-2 me-2" data-bs-dismiss="modal">No, Keep it</button>
+                                        <a href="{% url 'delete_list' list.id %}" class="list-link delete-link px-3 py-2 me-2">Yes, Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="add_items_{{list.id}}" tabindex="-2" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Add items to {{list}}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'add_list_items' list.id %}" method="POST" id="add_list_items_form">
+                                            {% csrf_token %}    
+                                            <label for="id_listItems" class="add-list-label mb-2">Listitems:</label>
+                                            <textarea name="listItems" required="" id="id_listItems" placeholder="separate items by 'comma, space'"></textarea>
+                                            
+                                            <button type="submit" class="list-link save-link px-3 py-2 mt-2">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% elif search_model == 'dish' %}
+                    {% for dish in results %}
+                        <div class="dish-column col-3 px-2">
+                            <div class="dish-card p-0">
+                                {% if dish.image %}
+                                    <img src="{{dish.image.url}}"  class="dish-image">
+                                {% else %}
+                                    <img src="{% static 'EricaOne/brand/no-image.png' %}" class="dish-image">    
+                                {% endif %}
+                                <div class="dish-info my-2 px-3">
+                                    <p class="card-title mb-2">{{ dish.name }}</p>
+                                    <p class="dish-prep mb-1">
+                                        <i class="fa-solid fa-clock me-1"></i>
+                                        <span>
+                                            {% if dish.prep_hours != 0 %}
+                                                {{dish.prep_hours}} hours
+                                            {% endif %}
+                                        </span>
+                                        <span>
+                                            {% if dish.prep_minutes != 0 %}
+                                                {{dish.prep_minutes}} minutes
+                                            {% endif %}
+                                        </span>
+                                    </p>
+                                    <p class="dish-servings">
+                                        <i class="fa-solid fa-utensils me-1"></i>
+                                        {{dish.servings}} Servings
+                                    </p>
+                                </div>
+                                <a href="{% url 'recipe' dish.id %}" class="dish-link px-3 py-2 m-2">See dish</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif%}
+            </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

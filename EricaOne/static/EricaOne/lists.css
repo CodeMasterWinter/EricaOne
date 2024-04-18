@@ -47,8 +47,13 @@
 .list-items {
     height: 80%;
     list-style: none;
-    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
     mask: linear-gradient(#ffffff 80%, transparent);
+}
+
+.list-items::-webkit-scrollbar {
+    display: none;
 }
 
 .list-item {

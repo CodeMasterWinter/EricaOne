@@ -157,6 +157,7 @@ body.dark-mode {
     display: flex;
     list-style: none;
     align-items: center;
+    background-color: #000000;
     justify-content: space-between;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 8px 8px -6px;
 }
@@ -187,7 +188,7 @@ body.dark-mode {
 .nav-link {
     height: 100%;
     display: grid;
-    color: #000000;
+    color: #ffffff;
     font-weight: 600;
     place-content: center;
     transition: background-color 0.4s ease;
