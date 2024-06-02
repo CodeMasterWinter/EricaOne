@@ -42,7 +42,7 @@ while True:
             slot = driver.find_element(By.ID, slot_id)
             actions = ActionChains(driver)
             actions.drag_and_drop(key, slot).perform()
-            time.sleep(0.8)
+            time.sleep(1)
         submit = driver.find_element(By.CLASS_NAME, 'submit')
         submit.click()
         time.sleep(3)

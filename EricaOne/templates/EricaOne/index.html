@@ -6,43 +6,46 @@
 {% endblock %}
 
 {% block content %}
-    <section id="content" class="mx-3">
-        <div class="container-fluid main-container p-0">
-            <h2 class="page-header display-5 my-4 ps-3">
+    <section id="landing" class="mx-3">
+        <div class="container-fluid landing-container p-0">
+            <h2 class="page-header ps-3 m-0">
                 Welcome back, Winter!
             </h2>
             <div class="content-grid">
                 <div class="meal-column col-3 p-2">
-                    {% for dish in dishes %}
-                        <div class="dish-card p-2">
-                            {% if dish.image %}
-                                <img src="{{dish.image.url}}"  class="dish-image">
-                            {% else %}
-                                <img src="{% static 'EricaOne/brand/no-image.png' %}" class="dish-image">    
-                            {% endif %}
-                            <div class="dish-info my-2 px-2">
-                                <p class="card-title mb-2">{{ dish.name }}</p>
-                                <p class="dish-prep mb-1">
-                                    <i class="fa-solid fa-clock me-1"></i>
-                                    <span>
-                                        {% if dish.prep_hours != 0 %}
-                                            {{dish.prep_hours}} hours
-                                        {% endif %}
-                                    </span>
-                                    <span>
-                                        {% if dish.prep_minutes != 0 %}
-                                            {{dish.prep_minutes}} minutes
-                                        {% endif %}
-                                    </span>
-                                </p>
-                                <p class="dish-servings">
-                                    <i class="fa-solid fa-utensils me-1"></i>
-                                    {{dish.servings}} Servings
-                                </p>
+                    <p class="meal-column-label ps-1">{{meal_time}} suggestions</p>
+                    <div class="dish-row">
+                        {% for dish in dishes %}
+                            <div class="dish-card p-2">
+                                {% if dish.image %}
+                                    <img src="{{dish.image.url}}"  class="dish-image">
+                                {% else %}
+                                    <img src="{% static 'EricaOne/brand/no-image.png' %}" class="dish-image">    
+                                {% endif %}
+                                <div class="dish-info my-2 px-2">
+                                    <p class="card-title mb-2">{{ dish.name }}</p>
+                                    <p class="dish-prep mb-1">
+                                        <i class="fa-solid fa-clock me-1"></i>
+                                        <span>
+                                            {% if dish.prep_hours != 0 %}
+                                                {{dish.prep_hours}} hours
+                                            {% endif %}
+                                        </span>
+                                        <span>
+                                            {% if dish.prep_minutes != 0 %}
+                                                {{dish.prep_minutes}} minutes
+                                            {% endif %}
+                                        </span>
+                                    </p>
+                                    <p class="dish-servings">
+                                        <i class="fa-solid fa-utensils me-1"></i>
+                                        {{dish.servings}} Servings
+                                    </p>
+                                </div>
+                                <a href="{% url 'recipe' dish.id %}" class="dish-link px-3 py-2 m-2">See dish</a>
                             </div>
-                            <a href="{% url 'recipe' dish.id %}" class="dish-link px-3 py-2 m-2">See dish</a>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

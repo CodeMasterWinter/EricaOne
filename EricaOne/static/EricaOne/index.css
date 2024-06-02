@@ -1,37 +1,66 @@
+#landing {
+    height: calc(100vh - 8rem);
+}
+
 .page-header {
-    height: 3rem;
+    height: 5rem;
     font-size: 2rem;
     color: #000000;
     font-weight: 700;
     display: flex;
     align-items: center;
-    border-left: 10px solid #7e3cff;
+    position: relative;
 }
 
-.main-container {
-    height: 95%;
+.page-header::before {
+    left: 0;
+    height: 60%;
+    content: '';
+    width: .5rem;
+    position: absolute;
+    background-color: #7e3cff;
+}
+
+.landing-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .content-grid {
     gap: 1rem;
-    height: 85%;
-    display: grid;
+    width: 100%;
+    display: flex;
+    height: calc(100% - 7rem); 
 }
 
-.meal-column{
+.meal-column {
+    height: 100%;
     display: flex;
+    align-self: flex-end;
     border-radius: 2vh;
     flex-direction: column;
+    justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.meal-column label {
-    font-weight: 500;
-    border-left: 5px solid #7e3cff;
+.meal-column-label {
+    height: 2rem;
+    margin: auto;
+    display: inline;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.dish-row {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 3rem);
 }
 
 .dish-card {
-    width: 100%;
     flex-grow: 1;
     display: flex;
     overflow: hidden;
@@ -44,7 +73,7 @@
     z-index: -1;
     content: '';
     position: absolute;
-    transition: opacity .2s ease;
+    transition: opacity .5s ease;
     background: linear-gradient(to bottom, transparent, #000000)
 }
 
@@ -62,7 +91,7 @@
     position: absolute;
     border-radius: 1vh;
     transform: scale(1.2);
-    transition: transform .2s ease;
+    transition: transform .5s ease;
 }
 
 .dish-card:hover .dish-image{
@@ -75,11 +104,12 @@
     z-index: 2;
     position: relative;
     align-self: flex-end;
-    transition: transform .2s ease;
+    transition: visibility .5s ease, opacity .5s ease;
 }
 
 .dish-card:hover .dish-info{
-    transform: translate3d(0, 10rem, 0);
+    opacity: 0;
+    visibility: hidden;
 }
 
 .dish-info::after {
@@ -126,7 +156,7 @@
     text-decoration: none;
     transform: translate3d(0, -10rem, 0);
     background-color: #7e3cff;
-    transition: background-color .2s ease, transform .2s ease-in-out;
+    transition: background-color .2s ease, transform .5s ease-in-out;
 }
 
 .dish-card:hover .dish-link {
@@ -141,20 +171,6 @@
 
     .dish-card:last-child {
         display: none;
-    }
-}
-
-@media (min-width: 1650px) {
-
-    .meal-column {
-        gap: 1rem;
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1;
-    }
-
-    .dish-info {
-        height: 35%;
     }
 }
 
