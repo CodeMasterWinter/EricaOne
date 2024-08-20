@@ -13,7 +13,7 @@ body {
 }
 
 body.dark-mode {
-    background-color: #131313;
+    background-color: #1F1F1F;
 }
 
 #splash {
@@ -203,6 +203,11 @@ body.dark-mode {
     height: calc(100vh - 8rem);
 }
 
+.null-return {
+    color: #7e3cff;
+    font-weight: 600;
+}
+
 .sub-header {
     height: 20vh;
     display: flex;
@@ -246,6 +251,22 @@ body.dark-mode {
 
 .searchbar-icon:hover {
     background-color: #6b21ff;
+}
+
+/* Laptop */
+@media screen and (min-width: 1081px) and (max-width: 1366px) {
+    
+    nav {
+        height: 6rem;
+    }
+
+    .logo-nav {
+        height: 4rem;
+    }
+
+    #content {
+        height: calc(100vh - 6rem);
+    }
 }
 
 @keyframes fall-in {

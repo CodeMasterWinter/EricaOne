@@ -15,14 +15,14 @@ def index(request):
     else:
         meal_time = "Breakfast"
 
-    all_dishes = Dish.objects.all()
-    category = Category.objects.get(name=meal_time)
-    dish_filter = all_dishes.filter(categories=category)
-    dishes = sample(list(dish_filter), 2)
+    # all_dishes = Dish.objects.all()
+    # category = Category.objects.get(name=meal_time)
+    # dish_filter = all_dishes.filter(categories=category)
+    # dishes = sample(list(dish_filter), 2)
 
     context = {
         'meal_time': meal_time,
-        'dishes': dishes,
+        # 'dishes': dishes,
         'page_title': 'Home'
     }
 

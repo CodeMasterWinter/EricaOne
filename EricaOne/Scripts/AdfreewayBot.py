@@ -7,12 +7,19 @@ from selenium.common.exceptions import ElementNotInteractableException, ElementC
 driver = webdriver.Firefox()
 driver.get('https://adfreeway.com/users/sign_in')
 
+# accept cookies
+
+cookies = driver.find_element(By.CLASS_NAME, "js-cookies-eu-ok")
+cookies.click()
+time.sleep(5)
+
+time.sleep(3)
 #login sequence
 username = driver.find_element(By.ID, "user_email")
-username.send_keys("langelihlemogotsi@gmail.com")
+username.send_keys("yabeenduped@gmail.com")
 
 password = driver.find_element(By.ID, "user_password")
-password.send_keys("L2lpabp2013")
+password.send_keys("#Yabeen112672")
 time.sleep(3)
 
 submit = driver.find_element(By.ID,"access-wifi-btn")
